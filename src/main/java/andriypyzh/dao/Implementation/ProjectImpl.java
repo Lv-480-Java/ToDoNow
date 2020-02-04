@@ -18,7 +18,7 @@ public class ProjectImpl implements ProjectDao {
     public void add(Project project) {
         String sql = "INSERT INTO Projects(ID, Name, CreatorID, CreationDate, ExpirationDate," +
                 " Description, Status, Type) VALUES (?,?,?,?,?,?,?,?)";
-
+git
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -150,9 +150,21 @@ public class ProjectImpl implements ProjectDao {
     }
 
     @Override
-    public void assignUser() {
+    public void assignUser(Project project,User user) {
 
+        String sql = "INSERT INTO Users_Projects_Assigments(UserID, ProjectID) VALUES (?,?);";
 
+        Project newProject = new Project();
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, user.getId());
+            statement.setInt(1, project.getId());
+            statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

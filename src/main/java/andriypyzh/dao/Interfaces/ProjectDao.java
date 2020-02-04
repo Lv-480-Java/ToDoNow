@@ -28,5 +28,5 @@ public interface ProjectDao {
 
 
 
-    void assignUser();
+    void assignUser(Project project,User user);
 }

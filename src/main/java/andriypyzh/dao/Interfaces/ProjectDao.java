@@ -24,4 +24,9 @@ public interface ProjectDao {
 
     //delete
     void remove(int id);
+
+
+
+
+    void assignUser();
 }

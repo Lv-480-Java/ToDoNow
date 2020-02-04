@@ -141,7 +141,6 @@ public class UserImpl implements UserDao {
     public static void main(String[] args) {
         UserImpl userService = new UserImpl();
 
-        System.out.println(userService.getByName("Andriy"));
 
         User user1 = new User(1, "Ilon Mask", "1234");
         User user2 = new User(2, "Jeff Besos", "0000");

@@ -5,16 +5,15 @@ import andriypyzh.entity.Project;
 import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
 import andriypyzh.util.ConnectionFactory;
+import org.graalvm.compiler.lir.LIRInstruction;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ProjectImpl implements ProjectDao {
+
     @Override
     public void add(Project project) {
         String sql = "INSERT INTO Projects(ID, Name, CreatorID, CreationDate, ExpirationDate," +
@@ -147,6 +146,51 @@ public class ProjectImpl implements ProjectDao {
 
     @Override
     public void remove(int id) {
+
+    }
+
+    @Override
+    public void assignUser() {
+
+
+    }
+
+
+    public static void main(String[] args) {
+
+        ProjectImpl projectImpl = new ProjectImpl();
+
+        Project project1 = new Project(0, "project1", "ilon",
+                new Date(1000L), new Date(1000L), "hello world", "Created","default");
+        Project project2 = new Project(1, "project2", "andriy",
+                new Date(1000L), new Date(1000L), "hello world", "Created","default");
+        Project project3 = new Project(2, "project3", "tom",
+                new Date(1000L), new Date(1000L), "hello world", "Created","default");
+
+        projectImpl.add(project1);
+        projectImpl.add(project2);
+        projectImpl.add(project3);
+
+        System.out.println(projectImpl.getById(0));
+        System.out.println(projectImpl.getById(1));
+        System.out.println(projectImpl.getById(2));
+
+        System.out.println(projectImpl.getByName("project1"));
+        System.out.println(projectImpl.getByName("project2"));
+        System.out.println(projectImpl.getByName("project3"));
+
+
+
+
+        System.out.println(projectImpl.getAllByUser());
+
+
+
+//        System.out.println(taskImpl.getByName("task1"));
+
+        projectImpl.remove(0);
+        projectImpl.remove(1);
+        projectImpl.remove(2);
 
     }
 }

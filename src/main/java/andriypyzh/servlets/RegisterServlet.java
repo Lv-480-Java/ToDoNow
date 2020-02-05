@@ -6,6 +6,7 @@ import andriypyzh.services.UserService;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +48,10 @@ public class RegisterServlet extends HttpServlet {
 
             userService.registerUser(user);
 
-            response.sendRedirect("registered");
+            request.setAttribute("user",user);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("registered.jsp");
+            requestDispatcher.forward(request, response);
         }
     }
 }

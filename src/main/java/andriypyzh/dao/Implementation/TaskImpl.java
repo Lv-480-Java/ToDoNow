@@ -15,22 +15,21 @@ public class TaskImpl implements TaskDao {
 
     @Override
     public void add(Task task) {
-        String sql = "INSERT INTO Tasks(ID, Name, Owner, ProjectID," +
+        String sql = "INSERT INTO Tasks( Name, Owner, ProjectID," +
                 "Priority, CreationDate, ExpirationDate, Description, Status) " +
-                "VALUES (?,?,?,?,?,?,?,?,?)";
+                "VALUES (?,?,?,?,?,?,?,?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, task.getId());
-            statement.setString(2, task.getName());
-            statement.setString(3, task.getOwner());
-            statement.setInt(4, task.getProjectId());
-            statement.setInt(5, task.getPriority());
-            statement.setDate(6, task.getCreationDate());
-            statement.setDate(7, task.getExpirationDate());
-            statement.setString(8, task.getDescription());
-            statement.setString(9, task.getStatus());
+            statement.setString(1, task.getName());
+            statement.setString(2, task.getOwner());
+            statement.setInt(3, task.getProjectId());
+            statement.setInt(4, task.getPriority());
+            statement.setDate(5, task.getCreationDate());
+            statement.setDate(6, task.getExpirationDate());
+            statement.setString(7, task.getDescription());
+            statement.setString(8, task.getStatus());
 
             statement.execute();
         } catch (SQLException e) {
@@ -105,7 +104,36 @@ public class TaskImpl implements TaskDao {
 
     @Override
     public List<Task> getAllByUser(User user) {
-        return null;
+        List<Task> tasks = new ArrayList<>();
+
+        String sql = "SELECT ID, Name, Owner, ProjectID,Priority, CreationDate, ExpirationDate," +
+                " Description, Status FROM Tasks WHERE Owner= ?;";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+
+            statement.setString(1, user.getUsername());
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Task newTask = new Task();
+                newTask.setId(resultSet.getInt("ID"));
+                newTask.setName(resultSet.getString("Name"));
+                newTask.setOwner(resultSet.getString("Owner"));
+                newTask.setProjectId(resultSet.getInt("ProjectID"));
+                newTask.setPriority(resultSet.getInt("Priority"));
+                newTask.setCreationDate(resultSet.getDate("CreationDate"));
+                newTask.setExpirationDate(resultSet.getDate("ExpirationDate"));
+                newTask.setDescription(resultSet.getString("Description"));
+                newTask.setStatus(resultSet.getString("Status"));
+
+                tasks.add(newTask);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tasks;
     }
 
     @Override

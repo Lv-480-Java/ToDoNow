@@ -16,16 +16,17 @@ public class UserImpl implements UserDao {
     @Override
     public void add(User user) {
 
-        String sql = "INSERT INTO Users(ID,Username, Password) VALUES (?,?,?);";
+        String sql = "INSERT INTO Users(Username, Password) VALUES (?,?);";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, user.getId());
-            statement.setString(2, user.getUsername());
-            statement.setString(3, user.getPassword());
-
+//            statement.setInt(1, user.getId());
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            System.out.println(statement.toString());
             statement.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

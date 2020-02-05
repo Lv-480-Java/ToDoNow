@@ -11,6 +11,7 @@
 /Users/andriypyzh/Desktop/Project1/ToDoNow/src/main/java/andriypyzh/dao/Implementation/UserImpl.java
 /Users/andriypyzh/Desktop/Project1/ToDoNow/src/main/java/andriypyzh/servlets/ListServlet.java
 /Users/andriypyzh/Desktop/Project1/ToDoNow/src/main/java/andriypyzh/services/ProjectService.java
+/Users/andriypyzh/Desktop/Project1/ToDoNow/src/main/java/andriypyzh/servlets/AddTaskServlet.java
 /Users/andriypyzh/Desktop/Project1/ToDoNow/src/main/java/andriypyzh/servlets/LogInServlet.java
 /Users/andriypyzh/Desktop/Project1/ToDoNow/src/main/java/andriypyzh/dao/Interfaces/ProjectDao.java
 /Users/andriypyzh/Desktop/Project1/ToDoNow/src/main/java/andriypyzh/dao/Interfaces/TaskDao.java

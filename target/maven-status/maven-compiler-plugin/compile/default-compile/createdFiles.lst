@@ -1,4 +1,5 @@
 andriypyzh/dao/Interfaces/TaskDao.class
+andriypyzh/servlets/AddTaskServlet.class
 andriypyzh/entity/Task.class
 andriypyzh/servlets/ListServlet.class
 andriypyzh/dao/Interfaces/UserDao.class

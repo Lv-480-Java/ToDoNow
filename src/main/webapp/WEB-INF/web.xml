@@ -46,6 +46,26 @@
     <url-pattern>/logged</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ListServlet</servlet-name>
+    <jsp-file>/tasklist.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ListServlet</servlet-name>
+    <url-pattern>/list</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddTaskServlet</servlet-name>
+    <jsp-file>/addTask.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddTaskServlet</servlet-name>
+    <url-pattern>/addTask</url-pattern>
+  </servlet-mapping>
+
   <error-page>
     <exception-type>java.lang.Exception</exception-type>
     <location>/error.jsp</location>

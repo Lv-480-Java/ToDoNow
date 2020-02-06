@@ -9,9 +9,14 @@
 <body>
 <h1>Successfully registered
 
-<%
-    out.print(((User) request.getAttribute("user")).getUsername());
-%>
+    <jsp:useBean id="user" scope="request" type="andriypyzh.entity.User"/>
+    <c:out value="user.username">nvh</c:out>
+
+    <%
+        out.print(((User) request.getAttribute("user")).getUsername());
+    %>
+
+    <a href="/authentication">OK</a>
 
 </h1>
 

@@ -44,7 +44,7 @@ public class LogInServlet extends HttpServlet {
 
             request.setAttribute("user",user);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListServlet");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
             requestDispatcher.forward(request, response);
 
         }else {

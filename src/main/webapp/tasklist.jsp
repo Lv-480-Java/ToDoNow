@@ -14,11 +14,21 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Tasks</h1>
 
-</p>
+<div align="center">
+    <form method="post" action="/home?action=logout">
+        <input type="submit" value="Log Out">
+    </form>
+</div>
 
-<jsp:include page="addTask.jsp"></jsp:include>
+<div align="center">
+    <form method="post" action="/addtask">
+        <input type="submit" value="Add Task">
+    </form>
+</div>
+
+<h3 align="center">Tasks</h3>
+
 <table border="1" align="center">
     <tr>
         <th>Task</th>

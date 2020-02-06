@@ -10,7 +10,6 @@
     <packaging>war</packaging>
 
     <name>ToDoNow Maven Webapp</name>
-    <url>http://www.todonow.sock</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -45,18 +44,12 @@
             <scope>test</scope>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.taglibs</groupId>-->
-<!--            <artifactId>taglibs-standard-spec</artifactId>-->
-<!--            <version>1.2.5</version>-->
-<!--        </dependency>-->
-
-
-<!--        <dependency>-->
-<!--            <groupId>org.apache.taglibs</groupId>-->
-<!--            <artifactId>taglibs-standard-impl</artifactId>-->
-<!--            <version>1.2.5</version>-->
-<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
 
         <dependency>
             <groupId>javax</groupId>
@@ -71,12 +64,6 @@
             <version>5.1.48</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>javax.servlet</groupId>-->
-<!--            <artifactId>javax.servlet-api</artifactId>-->
-<!--            <version>3.1.0</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>

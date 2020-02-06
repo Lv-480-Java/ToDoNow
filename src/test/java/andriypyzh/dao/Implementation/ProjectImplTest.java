@@ -39,9 +39,9 @@ class ProjectImplTest {
 
         System.out.println(projectImpl.getAllByUser(userImpl.getByName("andriy")));
 
-
-        projectImpl.remove(0);
-        projectImpl.remove(1);
-        projectImpl.remove(2);
+//
+//        projectImpl.remove(0);
+//        projectImpl.remove(1);
+//        projectImpl.remove(2);
     }
 }

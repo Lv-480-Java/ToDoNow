@@ -13,7 +13,7 @@
 <body>
 <div align="center">
     <h1>Add Task</h1>
-    <form action="AddTaskServlet" method="post">
+    <form action="/AddTask" method="post">
         <table style="with: 80%">
             <tr>
                 <td>Task Name</td>

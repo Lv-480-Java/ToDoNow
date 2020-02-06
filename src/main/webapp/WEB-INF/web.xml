@@ -37,33 +37,23 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Logged</servlet-name>
-    <jsp-file>/logged.jsp</jsp-file>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>Logged</servlet-name>
-    <url-pattern>/logged</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>ListServlet</servlet-name>
-    <jsp-file>/tasklist.jsp</jsp-file>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>ListServlet</servlet-name>
-    <url-pattern>/list</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>AddTaskServlet</servlet-name>
+    <servlet-name>Addtask</servlet-name>
     <jsp-file>/addTask.jsp</jsp-file>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>AddTaskServlet</servlet-name>
-    <url-pattern>/addTask</url-pattern>
+    <servlet-name>Addtask</servlet-name>
+    <url-pattern>/addtask</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>HomeServlet</servlet-name>
+    <jsp-file>/tasklist.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/list</url-pattern>
   </servlet-mapping>
 
   <error-page>

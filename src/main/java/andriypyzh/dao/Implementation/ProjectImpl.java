@@ -1,26 +1,35 @@
 package andriypyzh.dao.Implementation;
 
-import andriypyzh.dao.Interfaces.*;
+import andriypyzh.dao.Implementation.GenericDao;
 import andriypyzh.entity.Project;
 import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
 import andriypyzh.util.ConnectionFactory;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProjectImpl implements ProjectDao {
+
+public class ProjectImpl extends GenericDao<Project> {
+
+    private static final Logger logger = LogManager.getLogger(ProjectImpl.class);
+
+    public static final String ADD_PROJECT = "INSERT INTO Projects( Name, Creator, CreationDate," +
+            " ExpirationDate, Description, Status, Type) VALUES (?,?,?,?,?,?,?)";
+    public static final String GET_BY_ID = "SELECT ID, Name, Creator, CreationDate, ExpirationDate," +
+            " Description, Status, Type FROM Projects WHERE ID = ?;";
+    public static final String GET_BY_NAME = "SELECT ID, Name, Creator, CreationDate, ExpirationDate," +
+            " Description, Status, Type FROM Projects WHERE ID = ?;";
+
 
     @Override
     public void add(Project project) {
-
-        String sql = "INSERT INTO Projects( Name, Creator, CreationDate, ExpirationDate," +
-                " Description, Status, Type) VALUES (?,?,?,?,?,?,?)";
-
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(ADD_PROJECT)) {
 
             statement.setString(1, project.getName());
             statement.setString(2, project.getCreator());
@@ -32,19 +41,25 @@ public class ProjectImpl implements ProjectDao {
 
             statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Project Insertion Error",e);
         }
     }
 
     @Override
+    public List<Project> getAll(){
+        return null;
+    }
+
+
+
+
+    @Override
     public Project getById(int id) {
-        String sql = "SELECT ID, Name, Creator, CreationDate, ExpirationDate," +
-                " Description, Status, Type FROM Projects WHERE ID = ?;";
 
         Project newProject = new Project();
 
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(GET_BY_ID)) {
 
             statement.setInt(1, id);
 
@@ -71,14 +86,10 @@ public class ProjectImpl implements ProjectDao {
     @Override
     public Project getByName(String name) {
 
-        String sql = "SELECT ID, Name, Creator, CreationDate, ExpirationDate," +
-                " Description, Status, Type FROM Projects WHERE Name = ?;";
-
-
         Project newProject = new Project();
 
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(GET_BY_NAME)) {
 
             statement.setString(1, name);
 
@@ -101,7 +112,6 @@ public class ProjectImpl implements ProjectDao {
         return newProject;
     }
 
-    @Override
     public List<Project> getAllByUser(User user) {
         List<Project> projects = new ArrayList<>();
 
@@ -141,18 +151,18 @@ public class ProjectImpl implements ProjectDao {
     }
 
     @Override
-    public void update(Task task) {
+    public void update(Project project) {
 
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(Project project) {
         String sql = "DELETE FROM Projects WHERE ID = ?;";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, id);
+            statement.setInt(1, project.getId());
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -160,7 +170,6 @@ public class ProjectImpl implements ProjectDao {
         }
     }
 
-    @Override
     public void assignUser(Project project, User user) {
 
         String sql = "INSERT INTO Users_Projects_Assigments(UserID, ProjectID) VALUES (?,?);";
@@ -184,6 +193,7 @@ public class ProjectImpl implements ProjectDao {
 
     public static void main(String[] args) {
 
+        logger.info("Log configured");
 
     }
 }

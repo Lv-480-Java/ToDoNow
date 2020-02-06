@@ -7,6 +7,8 @@
 </head>
 
 <body>
+
+
 <div align="center">
     <h1>Register</h1>
     <form action="RegisterServlet" method="post">

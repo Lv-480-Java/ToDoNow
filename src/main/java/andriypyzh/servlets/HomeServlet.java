@@ -1,4 +1,4 @@
 package andriypyzh.servlets;
 
-public class AddTaskServlet {
+public class HomeServlet {
 }

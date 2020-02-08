@@ -1,28 +1,67 @@
 package andriypyzh.services;
 
-import andriypyzh.dao.Implementation.ProjectImpl;
-import andriypyzh.dao.Implementation.TaskImpl;
+import andriypyzh.dao.Implementation.ProjectDao;
+import andriypyzh.dao.Implementation.TaskDao;
 import andriypyzh.entity.Project;
 import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
+import jdk.nashorn.internal.ir.RuntimeNode;
+import org.apache.log4j.Logger;
 
-import java.lang.ref.PhantomReference;
+import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 public class TaskService {
+    Logger logger = Logger.getLogger(TaskService.class);
 
-    public  List<Task> displayTasks(User user) throws Exception {
-        TaskImpl taskDao = new TaskImpl();
-        ProjectImpl projectDao = new ProjectImpl();
+    public void createTask(String name, String username, String project,
+                           int priority, Date deadline, String description) {
 
-        List<Project> projects = projectDao.getAllByUser(user);
-        for (Project project:projects){
-            System.out.println(project.getType());
-            if (project.getType().equals("default")){
-                return taskDao.getAllByProject(project.getId());
+        logger.info(username + " Creating Task " + name);
+
+        long millis = System.currentTimeMillis();
+        java.sql.Date creationDate = new java.sql.Date(millis);
+
+        ProjectDao projectDao = new ProjectDao();
+
+        Task task = new Task(name, username, projectDao.getByName(project).getId(), priority,
+                creationDate, deadline, description, "created");
+
+        TaskDao taskDao = new TaskDao();
+        taskDao.add(task);
+    }
+
+
+    public List<Task> displayTasks(User user) throws Exception {
+        TaskDao taskDao = new TaskDao();
+        ProjectDao projectDao = new ProjectDao();
+
+        try {
+            List<Project> projects = projectDao.getAllByUser(user);
+            for (Project project : projects) {
+                System.out.println(project.getType());
+                if (project.getName().equals("Private Tasks of " + user.getUsername())) {
+                    return taskDao.getAllByProject(project.getId());
+                }
             }
+        } catch (Exception e) {
+            logger.error("Cannot display tasks", e);
         }
-        throw new Exception();
+        return new ArrayList<Task>();
+    }
+
+    public List<Task> displayTasksByProject(Project project) throws Exception {
+        TaskDao taskDao = new TaskDao();
+        ProjectDao projectDao = new ProjectDao();
+
+        try {
+            List<Task> projects = taskDao.getAllByProject(project.getId());
+        } catch (Exception e) {
+            logger.error("Cannot display tasks", e);
+        }
+
+        return new ArrayList<Task>();
     }
 
 }

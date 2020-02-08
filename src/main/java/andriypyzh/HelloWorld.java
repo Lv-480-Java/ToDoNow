@@ -9,7 +9,7 @@ public class HelloWorld {
     private static final Logger logger = LogManager.getLogger(HelloWorld.class);
     public static void main(String[] args) {
         // basic log4j configurator
-        BasicConfigurator.configure();
+//        BasicConfigurator.configure();
         logger.info("Hello world");
         logger.info("we are in logger info mode");
 

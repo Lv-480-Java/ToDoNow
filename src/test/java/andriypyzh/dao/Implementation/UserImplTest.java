@@ -1,15 +1,12 @@
 package andriypyzh.dao.Implementation;
 
 import andriypyzh.entity.User;
-import org.junit.Assert;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserImplTest {
 
     @org.junit.jupiter.api.Test
     void UserDaoTest() {
-        UserImpl userService = new UserImpl();
+        UserDao userService = new UserDao();
 
         System.out.println(userService.getByName("Andriy"));
 

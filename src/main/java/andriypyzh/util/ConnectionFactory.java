@@ -1,38 +1,47 @@
 package andriypyzh.util;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Collection;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
+import java.sql.*;
 
 public class ConnectionFactory {
     private static Logger logger = Logger.getLogger(ConnectionFactory.class.getName());
 
-    private static final String username = "root";
-    private static final String password = "11111111";
-    private static final String connnectionURL = "jdbc:mysql://localhost:3306";
+    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "11111111";
+    private static final String CONNNECTION_URL = "jdbc:mysql://localhost:3306";
+    private static final String DATABASE_NAME = "USE ToDoList;";
 
-    public static Connection getConnection() {
-        Connection connection = null;
+    private static ConnectionFactory DBconnection;
+    private Connection connection = null;
+
+    private ConnectionFactory() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(connnectionURL, username, password);
+            Class.forName(DB_DRIVER);
+            connection = DriverManager.getConnection(CONNNECTION_URL, USERNAME, PASSWORD);
             logger.info("Connection OK");
 
             Statement statement = connection.createStatement();
-            statement.executeQuery("USE ToDoList;");
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            logger.info("Connection ERROR");
+            statement.executeQuery(DATABASE_NAME);
+        } catch (ClassNotFoundException | SQLException e) {
+            logger.error("Problem with db connection",e);
         }
+    }
+
+    public static ConnectionFactory getInstance() {
+        if (DBconnection == null) {
+            DBconnection = new ConnectionFactory();
+            return DBconnection;
+        } else {
+            return DBconnection;
+        }
+    }
+
+    public Connection getConnection() {
         return connection;
     }
 
-    public static void main(String[] args) {
-        getConnection();
-    }
 
+//    public static void main(String[] args) {
+//        getConnection();
+//    }
 }

@@ -9,7 +9,6 @@ public abstract class GenericDao<T> {
 
 
     //read
-    abstract List<T> getAll();
     abstract T getById(int id);
     abstract T getByName(String name);
 
@@ -19,5 +18,5 @@ public abstract class GenericDao<T> {
 
 
     //delete
-    abstract void remove(T entity);
+    abstract void removeById(int id);
 }

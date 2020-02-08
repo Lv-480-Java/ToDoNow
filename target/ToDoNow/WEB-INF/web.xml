@@ -1,0 +1,64 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>Authentication</servlet-name>
+    <jsp-file>/authentication.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Authentication</servlet-name>
+    <url-pattern>/authentication</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Registered</servlet-name>
+    <jsp-file>/registered.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Registered</servlet-name>
+    <url-pattern>/registered</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>Error</servlet-name>
+    <jsp-file>/error.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Error</servlet-name>
+    <url-pattern>/error_aut</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CreateTask</servlet-name>
+    <jsp-file>/createtask.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CreateTask</servlet-name>
+    <url-pattern>/create_task</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>HomeServlet</servlet-name>
+    <jsp-file>/homepage.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/homepage</url-pattern>
+  </servlet-mapping>
+
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/error.jsp</location>
+  </error-page>
+
+</web-app>

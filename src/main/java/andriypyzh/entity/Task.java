@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Task {
     private int id;
     private String name;
-    private String  owner;
+    private String owner;
     private int projectId;
     private int priority;
     private Date creationDate;
@@ -16,7 +16,20 @@ public class Task {
     private String status;
 
 
-    public Task(){}
+    public Task() {
+    }
+
+    public Task(String name, String owner, int projectId, int priority, Date creationDate, Date expirationDate, String description, String status) {
+        this.name = name;
+        this.owner = owner;
+        this.projectId = projectId;
+        this.priority = priority;
+        this.creationDate = creationDate;
+        this.expirationDate = expirationDate;
+        this.description = description;
+        this.status = status;
+    }
+
 
     public Task(int id, String name, String owner, int projectId, int priority, Date creationDate, Date expirationDate, String description, String status) {
         this.id = id;
@@ -56,7 +69,7 @@ public class Task {
         return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", userId='" + owner+ '\'' +
+                ", userId='" + owner + '\'' +
                 ", projectId=" + projectId +
                 ", priority=" + priority +
                 ", creationDate=" + creationDate +

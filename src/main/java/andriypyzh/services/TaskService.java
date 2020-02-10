@@ -15,6 +15,24 @@ import java.util.List;
 public class TaskService {
     Logger logger = Logger.getLogger(TaskService.class);
 
+    public Task getByID(int id){
+        TaskDao taskDao = new TaskDao();
+        return taskDao.getById(id);
+    }
+
+    public void updateTask(int id, String name, int priority,
+                           Date deadline,String description) {
+
+        TaskDao taskDao = new TaskDao();
+        Task newTask = taskDao.getById(id);
+        newTask.setName(name);
+        newTask.setPriority(priority);
+        newTask.setExpirationDate(deadline);
+        newTask.setDescription(description);
+
+        taskDao.update(newTask);
+    }
+
     public void createTask(String name, String username, String project,
                            int priority, Date deadline, String description) {
 
@@ -63,5 +81,6 @@ public class TaskService {
 
         return new ArrayList<Task>();
     }
+
 
 }

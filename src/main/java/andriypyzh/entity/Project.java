@@ -14,6 +14,16 @@ public class Project {
     private String type;
 
     public Project(){}
+    public Project(String name, String creatorId, Date creationDate, Date expirationDate,
+                   String description, String status, String type) {
+        this.name = name;
+        this.Creator = creatorId;
+        this.creationDate = creationDate;
+        this.expirationDate = expirationDate;
+        this.description = description;
+        this.status = status;
+        this.type = type;
+    }
 
     public Project(int id, String name, String creatorId, Date creationDate, Date expirationDate,
                    String description, String status, String type) {

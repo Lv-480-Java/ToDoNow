@@ -1,8 +1,10 @@
 package andriypyzh.servlets.actions;
 
+import andriypyzh.entity.Project;
 import andriypyzh.entity.User;
 import andriypyzh.services.TaskService;
 import andriypyzh.servlets.authentication.RegisterServlet;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Logger;
+import java.util.Properties;
 
 @WebServlet("/CreateTask")
 public class CreateTaskServlet extends HttpServlet {
@@ -21,7 +23,7 @@ public class CreateTaskServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        String project = (String) session.getAttribute("section");
+        String section = (String) session.getAttribute("section");
 
         String taskName = request.getParameter("Name");
         int priority = Integer.parseInt(request.getParameter("Priority"));
@@ -31,10 +33,16 @@ public class CreateTaskServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         TaskService taskService = new TaskService();
 
-        taskService.createTask(taskName,user.getUsername(),project,
-                            priority,deadline,description);
+        taskService.createTask(taskName, user.getUsername(), section,
+                priority, deadline, description);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
-        requestDispatcher.forward(request, response);
+        if (section.startsWith("Private Tasks of")) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
+            requestDispatcher.forward(request, response);
+        } else {
+            logger.info("/Projects?project=" + section);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + section);
+            requestDispatcher.forward(request, response);
+        }
     }
 }

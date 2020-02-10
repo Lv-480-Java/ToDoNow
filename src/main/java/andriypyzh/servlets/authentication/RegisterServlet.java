@@ -31,11 +31,15 @@ public class RegisterServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirm password");
 
         RegisterService registerService = new RegisterService();
-        registerService.registerUser(username,password,confirmPassword);
+        if (registerService.registerUser(username, password, confirmPassword)) {
 
-        request.setAttribute("user",username);
+            request.setAttribute("user", username);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("registered.jsp");
-        requestDispatcher.forward(request, response);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("registered.jsp");
+            requestDispatcher.forward(request, response);
+        } else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("notregistered.jsp");
+            requestDispatcher.forward(request, response);
+        }
     }
 }

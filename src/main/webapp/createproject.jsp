@@ -13,20 +13,20 @@
 <body>
 
 <div align="center">
-    <h1>Add Task</h1>
-    <form action="/CreateTask" method="post">
+    <h1>Add Project</h1>
+    <form action="/CreateProject" method="post">
         <table style="with: 80%">
             <tr>
-                <td>Task Name</td>
+                <td>Project Name</td>
                 <td><input type="text" name="Name"/></td>
-            </tr>
-            <tr>
-                <td>Priority</td>
-                <td><input type="text" name="Priority"/></td>
             </tr>
             <tr>
                 <td>Deadline</td>
                 <td><input type="text" name="Deadline"/></td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td><input type="text" name="Type"/></td>
             </tr>
             <tr>
                 <td>Description</td>

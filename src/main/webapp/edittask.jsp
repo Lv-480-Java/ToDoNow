@@ -1,38 +1,39 @@
 <%--
   Created by IntelliJ IDEA.
   User: andriypyzh
-  Date: 05.02.2020
-  Time: 13:58
+  Date: 09.02.2020
+  Time: 13:52
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Create Task</title>
+    <title>Edit Task</title>
 </head>
 <body>
+
 <div align="center">
-    <h1>Add Task</h1>
-    <form action="/CreateTask" method="post">
+    <h1>Edit Task</h1>
+    <form action="/EditTask" method="post">
         <table style="with: 80%">
             <tr>
                 <td>Task Name</td>
-                <td><input type="text" name="Name"></td>
+                <td><input type="text" name="Name" value=<%request.getParameter("name");%>></td>
             </tr>
             <tr>
                 <td>Priority</td>
-                <td><input type="text" name="Priority"/></td>
+                <td><input type="text" name="Priority" value=<%request.getParameter("priority");%>/></td>
             </tr>
             <tr>
                 <td>Deadline</td>
-                <td><input type="text" name="Deadline"/></td>
+                <td><input type="text" name="Deadline" value=<%request.getParameter("deadline");%>/></td>
             </tr>
             <tr>
                 <td>Description</td>
-                <td><input type="text" name="Description"/></td>
+                <td><input type="text" name="Description" value=<%request.getParameter("description");%>/></td>
             </tr>
         </table>
-        <input type="submit" value="Create"/>
+        <input type="submit" value="Edit"/>
 
         <a href="/home"> Cancel </a>
 

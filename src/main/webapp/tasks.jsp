@@ -1,11 +1,5 @@
 <%@ page import="andriypyzh.entity.Task" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: andriypyzh
-  Date: 08.02.2020
-  Time: 12:49
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,7 +8,7 @@
 <body>
 
 
-<table border="1" align="center" id="tableMain">
+<table border="1" align="center">
     <tbody>
     <tr>
         <th>Task</th>
@@ -37,15 +31,12 @@
             out.println("<td>" + task.getExpirationDate() + "</td>");
             out.println("<td>" + task.getDescription() + "</td>");
             out.println("<td>" + task.getStatus() + "</td>");
-            out.println();
+            out.println("<td><a href=/EditTask?task=" + task.getId() + "> edit </a> </td>");
             out.print("</tr>");
         }
     %>
-
     </tbody>
-
 </table>
-
 
 </body>
 </html>

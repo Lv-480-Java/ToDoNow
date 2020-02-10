@@ -3,9 +3,9 @@ andriypyzh/servlets/actions/CreateProjectServlet.class
 andriypyzh/entity/Task.class
 andriypyzh/entity/User.class
 andriypyzh/servlets/authentication/LogOutServlet.class
-andriypyzh/HelloWorld.class
 andriypyzh/services/UserService.class
 andriypyzh/dao/Implementation/GenericDao.class
+andriypyzh/servlets/actions/EditProjectServlet.class
 andriypyzh/servlets/authentication/LogInServlet.class
 andriypyzh/services/authentication/LogOutService.class
 andriypyzh/dao/Implementation/TaskDao.class
@@ -13,6 +13,7 @@ andriypyzh/dao/Implementation/UserDao.class
 andriypyzh/servlets/HomeServlet.class
 andriypyzh/util/ConnectionFactory.class
 andriypyzh/dao/Implementation/ProjectDao.class
+andriypyzh/servlets/actions/EditTaskServlet.class
 andriypyzh/services/authentication/RegisterService.class
 andriypyzh/servlets/ProjectServlet.class
 andriypyzh/servlets/actions/CreateTaskServlet.class

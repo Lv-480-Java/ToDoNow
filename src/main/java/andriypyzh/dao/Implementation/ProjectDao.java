@@ -32,8 +32,8 @@ public class ProjectDao extends GenericDao<Project> {
             " WHERE Users.Username = ?;";
     private static final String REMOVE_BY_ID = "DELETE FROM Projects WHERE ID = ?;";
     private static final String ASSIGN_USER = "INSERT INTO Users_Projects_Assigments(UserID, ProjectID) VALUES (?,?);";
-    private static final String UPDATE = "UPDATE Projects SET ID=?, Name=?, Creator=?,CreationDate=?," +
-            "ExpirationDate=?, Description=?, Status=?, Type=?;";
+    private static final String UPDATE = "UPDATE Projects SET Name=?, Creator=?,CreationDate=?," +
+            "ExpirationDate=?, Description=?, Status=?, Type=? WHERE ID = ?;";
 
 
 
@@ -164,18 +164,19 @@ public class ProjectDao extends GenericDao<Project> {
         logger.info("Project Update");
         Connection connection = ConnectionFactory.getInstance().getConnection();
 
-        try (PreparedStatement statement = connection.prepareStatement(ADD)) {
+        try (PreparedStatement statement = connection.prepareStatement(UPDATE)) {
 
             logger.info(statement.toString());
 
-            statement.setInt(1, project.getId());
-            statement.setString(2, project.getName());
-            statement.setString(3, project.getCreator());
-            statement.setDate(4, project.getCreationDate());
-            statement.setDate(5, project.getExpirationDate());
-            statement.setString(6, project.getDescription());
-            statement.setString(7, project.getStatus());
-            statement.setString(8, project.getType());
+            statement.setString(1, project.getName());
+            statement.setString(2, project.getCreator());
+            statement.setDate(3, project.getCreationDate());
+            statement.setDate(4, project.getExpirationDate());
+            statement.setString(5, project.getDescription());
+            statement.setString(6, project.getStatus());
+            statement.setString(7, project.getType());
+            statement.setInt(8, project.getId());
+
 
             statement.execute();
         } catch (SQLException e) {

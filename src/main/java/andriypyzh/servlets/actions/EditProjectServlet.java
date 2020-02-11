@@ -54,7 +54,7 @@ public class EditProjectServlet extends HttpServlet {
         List<Project> projects = projectService.getAllUsersProjects(user);
         session.setAttribute("projects",projects);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + projectName);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + oldProject.getId());
         requestDispatcher.forward(request, response);
 
     }

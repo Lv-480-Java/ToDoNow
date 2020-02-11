@@ -51,9 +51,7 @@ public class ProjectServlet extends HttpServlet {
             List<Task> tasks = projectService.getProjectTasks(user, projectName);
 
             request.setAttribute("tasks", tasks);
-            request.setAttribute("project", project);
-            session.setAttribute("section",project.getName());
-;
+            session.setAttribute("section",project.getId());
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/projects");
             requestDispatcher.forward(request, response);

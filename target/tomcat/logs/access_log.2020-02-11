@@ -200,3 +200,11 @@
 0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:14:09 +0200] "GET /home HTTP/1.1" 200 2082 http-bio-8888-exec-5 8
 0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:14:10 +0200] "GET /Projects?project=sdfgdfg HTTP/1.1" 200 2776 http-bio-8888-exec-6 14
 0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:14:11 +0200] "POST /edit_project HTTP/1.1" 200 890 http-bio-8888-exec-7 1
+0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:17:47 +0200] "GET /EditProject HTTP/1.1" 200 - http-bio-8888-exec-9 8
+0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:17:48 +0200] "GET /LoginServlet HTTP/1.1" 405 1065 http-bio-8888-exec-10 6
+0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:17:48 +0200] "GET /EditProject HTTP/1.1" 200 - http-bio-8888-exec-10 0
+0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:17:48 +0200] "GET /EditTask?task=10 HTTP/1.1" 200 950 http-bio-8888-exec-10 7
+0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:17:48 +0200] "GET /EditTask HTTP/1.1" 500 165 http-bio-8888-exec-2 13
+0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:17:48 +0200] "GET /EditTask?task=10 HTTP/1.1" 200 950 http-bio-8888-exec-10 3
+0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:21:15 +0200] "GET / HTTP/1.1" 200 346 http-bio-8888-exec-1 55
+0:0:0:0:0:0:0:1 - - [11/Feb/2020:11:21:16 +0200] "GET /authentication HTTP/1.1" 200 1387 http-bio-8888-exec-2 2

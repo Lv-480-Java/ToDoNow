@@ -48,11 +48,11 @@ public class HomeServlet extends HttpServlet {
 
             List<Task> tasks = taskService.displayTasks(user);
             List<Project> projects = projectService.getAllUsersProjects(user);
+            int projectId = projects.get(0).getId();
 
             request.setAttribute("tasks", tasks);
             session.setAttribute("projects", projects);
-            session.setAttribute("section", "Private Tasks of " + user.getUsername());
-
+            session.setAttribute("section", projectId);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/homepage");
             requestDispatcher.forward(request, response);

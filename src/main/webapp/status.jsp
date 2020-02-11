@@ -16,8 +16,6 @@
 
 <jsp:include page="menu.jsp"></jsp:include>
 
-<jsp:include page="createtaskbutton.jsp"></jsp:include>
-
 <jsp:include page="tasks.jsp"></jsp:include>
 
 </body>

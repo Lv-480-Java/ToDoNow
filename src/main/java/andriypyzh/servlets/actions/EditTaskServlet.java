@@ -22,24 +22,26 @@ public class EditTaskServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        handleRequest(request,response);
-
         TaskService taskService = new TaskService();
-
 
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
 
         int taskId =(int)session.getAttribute("edittask");
 
-
-        String taskName = request.getParameter("Name");
+        String taskName = (String) request.getParameter("Name");
         int priority = Integer.parseInt(request.getParameter("Priority"));
         java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
         String description = request.getParameter("Description");
 
-        taskService.updateTask(taskId, taskName, priority, deadline, description);
+        Task task = taskService.getByID(taskId);
 
+        task.setName(taskName);
+        task.setPriority(priority);
+        task.setExpirationDate(deadline);
+        task.setDescription(description);
+
+        taskService.updateTask(task);
 
         if (section.startsWith("Private Tasks of")) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
@@ -64,7 +66,6 @@ public class EditTaskServlet extends HttpServlet {
         Task task = taskService.getByID(taskId);
 
         session.setAttribute("edittask",taskId);
-
 
         String name = task.getName();
         int priority = task.getPriority();

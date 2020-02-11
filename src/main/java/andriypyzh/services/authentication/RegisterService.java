@@ -23,7 +23,6 @@ public class RegisterService {
             logger.info("Invalid Data");
         } else if (!password.equals(confirmPassword)) {
             logger.info("Password doesn't match");
-
         } else {
 
             try {

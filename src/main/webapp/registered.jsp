@@ -13,6 +13,8 @@
         out.print(request.getAttribute("user"));
     %>
 
+<%--    <c:out value="${user}"></c:out>--%>
+
     <a href="/authentication">OK</a>
 
 </h1>

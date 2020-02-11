@@ -1,10 +1,11 @@
-package andriypyzh.servlets;
+package andriypyzh.servlets.sections;
 
 import andriypyzh.entity.Project;
 import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
 import andriypyzh.services.ProjectService;
 import andriypyzh.services.TaskService;
+import andriypyzh.services.authentication.LogOutService;
 import andriypyzh.servlets.authentication.RegisterServlet;
 import org.apache.log4j.Logger;
 
@@ -28,14 +29,14 @@ public class HomeServlet extends HttpServlet {
         if (action == null) {
             doGet(request, response);
         } else {
-            logout(request, response);
+            HttpSession session = request.getSession(false);
+            new LogOutService().logout(session);
         }
     }
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-
         HttpSession session = request.getSession();
         logger.info(session.getAttribute("user").toString());
 
@@ -49,10 +50,9 @@ public class HomeServlet extends HttpServlet {
             List<Project> projects = projectService.getAllUsersProjects(user);
 
             request.setAttribute("tasks", tasks);
-            request.setAttribute("projects",projects);
+            session.setAttribute("projects", projects);
             session.setAttribute("section", "Private Tasks of " + user.getUsername());
 
-            logger.info(request.getAttribute("projects"));
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/homepage");
             requestDispatcher.forward(request, response);
@@ -62,16 +62,7 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
-    public void logout(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(false);
-        session.invalidate();
-        try {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/authentication");
-            requestDispatcher.forward(request, response);
-        } catch (Exception e) {
-            logger.error(e);
-        }
-    }
+
 }
 
 

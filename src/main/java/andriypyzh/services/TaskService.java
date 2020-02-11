@@ -5,7 +5,6 @@ import andriypyzh.dao.Implementation.TaskDao;
 import andriypyzh.entity.Project;
 import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
-import jdk.nashorn.internal.ir.RuntimeNode;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -15,23 +14,27 @@ import java.util.List;
 public class TaskService {
     Logger logger = Logger.getLogger(TaskService.class);
 
+    TaskDao taskDao = new TaskDao();
+    ProjectDao projectDao = new ProjectDao();
+
+
     public Task getByID(int id){
-        TaskDao taskDao = new TaskDao();
         return taskDao.getById(id);
     }
 
-    public void updateTask(int id, String name, int priority,
-                           Date deadline,String description) {
+    public void updateTask(Task oldTask) {
 
-        TaskDao taskDao = new TaskDao();
-        Task newTask = taskDao.getById(id);
-        newTask.setName(name);
-        newTask.setPriority(priority);
-        newTask.setExpirationDate(deadline);
-        newTask.setDescription(description);
+        Task newTask = taskDao.getById(oldTask.getId());
+        newTask.setName(oldTask.getName());
+        newTask.setPriority(oldTask.getPriority());
+        newTask.setExpirationDate(oldTask.getExpirationDate());
+        newTask.setDescription(oldTask.getDescription());
+        newTask.setStatus(oldTask.getStatus());
 
         taskDao.update(newTask);
     }
+
+
 
     public void createTask(String name, String username, String project,
                            int priority, Date deadline, String description) {
@@ -40,8 +43,6 @@ public class TaskService {
 
         long millis = System.currentTimeMillis();
         java.sql.Date creationDate = new java.sql.Date(millis);
-
-        ProjectDao projectDao = new ProjectDao();
 
         Task task = new Task(name, username, projectDao.getByName(project).getId(), priority,
                 creationDate, deadline, description, "created");
@@ -52,8 +53,6 @@ public class TaskService {
 
 
     public List<Task> displayTasks(User user) throws Exception {
-        TaskDao taskDao = new TaskDao();
-        ProjectDao projectDao = new ProjectDao();
 
         try {
             List<Project> projects = projectDao.getAllByUser(user);
@@ -70,8 +69,6 @@ public class TaskService {
     }
 
     public List<Task> displayTasksByProject(Project project) throws Exception {
-        TaskDao taskDao = new TaskDao();
-        ProjectDao projectDao = new ProjectDao();
 
         try {
             List<Task> projects = taskDao.getAllByProject(project.getId());
@@ -80,6 +77,10 @@ public class TaskService {
         }
 
         return new ArrayList<Task>();
+    }
+
+    public void deleteTask(int taskId){
+        taskDao.removeById(taskId);
     }
 
 

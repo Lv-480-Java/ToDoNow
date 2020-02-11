@@ -1,26 +1,23 @@
-<%@ page import="andriypyzh.entity.Task" %>
-<%@ page import="java.util.List" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: andriypyzh
+  Date: 10.02.2020
+  Time: 22:31
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>StatusCategory</title>
 </head>
 <body>
-
 
 <jsp:include page="common/header.jsp"></jsp:include>
 
 <jsp:include page="menu.jsp"></jsp:include>
 
-<p align="center">
-<%
-    out.print(session.getAttribute("section"));
-%>
-</p>
-
 <jsp:include page="createtaskbutton.jsp"></jsp:include>
-<jsp:include page="createprojectbutton.jsp"></jsp:include>
+
 <jsp:include page="tasks.jsp"></jsp:include>
 
 </body>

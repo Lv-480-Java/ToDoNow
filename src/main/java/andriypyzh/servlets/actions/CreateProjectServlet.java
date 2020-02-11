@@ -1,5 +1,6 @@
 package andriypyzh.servlets.actions;
 
+import andriypyzh.entity.Project;
 import andriypyzh.entity.User;
 import andriypyzh.services.ProjectService;
 import andriypyzh.services.TaskService;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
+import java.util.List;
 
 @WebServlet("/CreateProject")
 public class CreateProjectServlet extends HttpServlet {
@@ -38,10 +40,12 @@ public class CreateProjectServlet extends HttpServlet {
         logger.info("/Projects?project=" + projectName);
         session.setAttribute("section", projectName);
 
+        List<Project> projects = projectService.getAllUsersProjects(user);
+        session.setAttribute("projects",projects);
+
         RequestDispatcher requestDispatcher =
                 request.getRequestDispatcher("/Projects?project=" + projectName);
         requestDispatcher.forward(request, response);
 
     }
-
 }

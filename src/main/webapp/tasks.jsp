@@ -3,12 +3,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <title>Tasks</title>
+    <link rel="stylesheet" href="tasks.css">
+
 </head>
 <body>
 
-
-<table border="1" align="center">
+<table border="1" align="center" class="redTable">
     <tbody>
     <tr>
         <th>Task</th>
@@ -30,7 +32,7 @@
             out.println("<td>" + task.getCreationDate() + "</td>");
             out.println("<td>" + task.getExpirationDate() + "</td>");
             out.println("<td>" + task.getDescription() + "</td>");
-            out.println("<td>" + task.getStatus() + "</td>");
+            out.println("<td><a href=/ChangeStatus?task="+ task.getId() +">" + task.getStatus() + "</a></td>");
             out.println("<td><a href=/EditTask?task=" + task.getId() + "> edit </a> </td>");
             out.print("</tr>");
         }

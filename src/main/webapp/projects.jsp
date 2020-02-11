@@ -10,8 +10,15 @@
 </head>
 <body>
 
+
 <jsp:include page="common/header.jsp"></jsp:include>
 <jsp:include page="menu.jsp"></jsp:include>
+
+<p align="center">
+    <%
+        out.print(session.getAttribute("section"));
+    %>
+</p>
 
 <jsp:include page="createtaskbutton.jsp"></jsp:include>
 <jsp:include page="createprojectbutton.jsp"></jsp:include>
@@ -28,6 +35,10 @@
             <td><%=((Project)request.getAttribute("project")).getCreationDate()%></td>
         </tr>
         <tr>
+            <th>Creator:</th>
+            <td><%=((Project)request.getAttribute("project")).getCreator()%></td>
+        </tr>
+        <tr>
             <th>Deadline:</th>
             <td><%=((Project)request.getAttribute("project")).getExpirationDate()%></td>
         </tr>
@@ -38,10 +49,6 @@
         <tr>
             <th>Type:</th>
             <td><%=((Project)request.getAttribute("project")).getType()%></td>
-        </tr>
-        <tr>
-            <th>Creator:</th>
-            <td><%=((Project)request.getAttribute("project")).getCreator()%></td>
         </tr>
         <tr>
             <th>Description:</th>

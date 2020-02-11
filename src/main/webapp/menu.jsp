@@ -6,16 +6,20 @@
     <title>Menu</title>
 </head>
 <body>
-<div>
+<div class="menu">
     <ul>
-        <li><a href="/home">Tasks</a></li>
-        <li><a href="/created">Created</a></li>
-        <li><a href="/in_progress">In Progress</a></li>
-        <li><a href="/competed">Completed</a></li>
+        <li><a href="/home">Private Tasks</a></li>
+        <li><a href="/CategoryStatus?status=created">Created</a></li>
+        <li><a href="/CategoryStatus?status=in+progress">In Progress</a></li>
+        <li><a href="/CategoryStatus?status=completed">Completed</a></li>
+<%--        //--%>
         <li><a href="/failed">Failed</a></li>
 
         <%
-            List<Project> projects = (List<Project>) request.getAttribute("projects");
+            List<Project> projects = (List<Project>) session.getAttribute("projects");
+            if (projects.size()!=1){
+                out.print("<p>Projects:</p>");
+            }
             for (Project project : projects) {
                 if (!project.getType().equals("default")) {
                     out.print("<li><a href =/Projects?project=" + project.getName().replace(" ","+") + ">");

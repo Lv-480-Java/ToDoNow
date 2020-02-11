@@ -1,4 +1,4 @@
-package andriypyzh.servlets;
+package andriypyzh.servlets.sections;
 
 import andriypyzh.entity.Project;
 import andriypyzh.entity.Task;
@@ -53,7 +53,7 @@ public class ProjectServlet extends HttpServlet {
             request.setAttribute("tasks", tasks);
             request.setAttribute("project", project);
             session.setAttribute("section",project.getName());
-
+;
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/projects");
             requestDispatcher.forward(request, response);

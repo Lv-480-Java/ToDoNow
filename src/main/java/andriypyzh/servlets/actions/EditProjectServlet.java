@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Properties;
 
 
@@ -37,7 +38,7 @@ public class EditProjectServlet extends HttpServlet {
         String projectName = request.getParameter("Name");
         java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
         String description = request.getParameter("Description");
-        String type = request.getParameter("type");
+        String type = request.getParameter("Type");
 
         Project oldProject = projectService.getUsersProject(user,section);
 
@@ -50,7 +51,10 @@ public class EditProjectServlet extends HttpServlet {
 
         request.setAttribute("project",oldProject);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + oldProject.getName());
+        List<Project> projects = projectService.getAllUsersProjects(user);
+        session.setAttribute("projects",projects);
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + projectName);
         requestDispatcher.forward(request, response);
 
     }

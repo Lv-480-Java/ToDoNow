@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import javax.persistence.PostLoad;
 import javax.persistence.criteria.Predicate;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,9 +88,13 @@ public class ProjectService {
         List<Task> tasks = new ArrayList<>();
 
         for (Project project : projects) {
-            List<Task> projectTasks=getProjectTasks(user, project.getName());
+            List<Task> projectTasks = getProjectTasks(user, project.getName());
             tasks.addAll(projectTasks);
         }
         return tasks;
+    }
+
+    public Project getByName(String projectName) {
+        return projectDao.getByName(projectName);
     }
 }

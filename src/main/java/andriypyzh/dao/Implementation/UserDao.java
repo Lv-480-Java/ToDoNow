@@ -19,7 +19,6 @@ public class UserDao extends GenericDao<User> {
     private static final String UPDATE = "UPDATE Users SET Username = ?, Password = ? WHERE ID = ?;";
     private static final String REMOVE_BY_ID = "DELETE FROM Users WHERE ID = ?;";
 
-
     @Override
     public void add(User user) {
         logger.info("User Add");
@@ -42,7 +41,7 @@ public class UserDao extends GenericDao<User> {
         logger.info("User Get By ID");
         Connection connection = ConnectionFactory.getInstance().getConnection();
 
-        User newUser = new User();
+        User newUser = null;
         try (PreparedStatement statement = connection.prepareStatement(GET_BY_ID)) {
 
             statement.setString(1, String.valueOf(id));
@@ -51,10 +50,12 @@ public class UserDao extends GenericDao<User> {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
+                newUser = new User();
                 newUser.setId(resultSet.getInt("ID"));
                 newUser.setUsername(resultSet.getString("Username"));
                 newUser.setPassword(resultSet.getString("Password"));
             }
+
         } catch (SQLException e) {
             logger.error("User Get By ID Error",e);
         }
@@ -66,7 +67,7 @@ public class UserDao extends GenericDao<User> {
         logger.info("User Get By Name");
 
         Connection connection = ConnectionFactory.getInstance().getConnection();
-        User newUser = new User();
+        User newUser = null;
 
         try (PreparedStatement statement = connection.prepareStatement(GET_BY_NAME)) {
             statement.setString(1, name);
@@ -76,6 +77,8 @@ public class UserDao extends GenericDao<User> {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
+                newUser = new User();
+
                 newUser.setId(resultSet.getInt("ID"));
                 newUser.setUsername(resultSet.getString("Username"));
                 newUser.setPassword(resultSet.getString("Password"));
@@ -143,7 +146,7 @@ public class UserDao extends GenericDao<User> {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            logger.error("User Removing Eroor",e);
+            logger.error("User Removing Error",e);
         }
     }
 

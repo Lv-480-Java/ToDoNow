@@ -13,7 +13,7 @@
 <body>
 
 <div align="center">
-    <form method="post" action="/edit_project?projectId="<%=session.getAttribute("section")%>>
+    <form method="get" action="/EditProject">
         <input type="submit" value="Edit Project">
     </form>
 </div>

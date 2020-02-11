@@ -22,7 +22,9 @@
             </tr>
             <tr>
                 <td>Deadline</td>
-                <td><input type="text" name="Deadline"/></td>
+                <td><input type="date" id="start" name="Deadline"
+                            value=<%= new java.sql.Date(System.currentTimeMillis()) %>
+                            min=<%= new java.sql.Date(System.currentTimeMillis()) %>></td>
             </tr>
             <tr>
                 <td>Type</td>
@@ -39,5 +41,6 @@
     </form>
 </div>
 
+<jsp:include page="alertBox.jsp"></jsp:include>
 </body>
 </html>

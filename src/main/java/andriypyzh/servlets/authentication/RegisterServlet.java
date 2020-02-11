@@ -1,9 +1,10 @@
 package andriypyzh.servlets.authentication;
 
 import andriypyzh.services.authentication.RegisterService;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
-import java.util.logging.Logger;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,15 +32,21 @@ public class RegisterServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirm password");
 
         RegisterService registerService = new RegisterService();
-        if (registerService.registerUser(username, password, confirmPassword)) {
+        try {
+            registerService.registerUser(username, password, confirmPassword);
 
             request.setAttribute("user", username);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("registered.jsp");
             requestDispatcher.forward(request, response);
-        } else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("notregistered.jsp");
+
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("error", e.getMessage());
+            logger.error("Cannot Register", e);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("authentication.jsp");
             requestDispatcher.forward(request, response);
         }
+
     }
 }

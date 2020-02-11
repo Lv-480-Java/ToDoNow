@@ -45,6 +45,7 @@ public class ProjectServlet extends HttpServlet {
 
             request.setAttribute("projects", projects);
 
+            //
             String projectName = request.getParameter("project").replace("+"," ");
 
             Project project = projectService.getUsersProject(user, projectName);
@@ -53,7 +54,6 @@ public class ProjectServlet extends HttpServlet {
             request.setAttribute("tasks", tasks);
             request.setAttribute("project", project);
             session.setAttribute("section",project.getName());
-;
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/projects");
             requestDispatcher.forward(request, response);
@@ -61,7 +61,6 @@ public class ProjectServlet extends HttpServlet {
         } catch (Exception e) {
             logger.error(e);
         }
-
     }
 }
 

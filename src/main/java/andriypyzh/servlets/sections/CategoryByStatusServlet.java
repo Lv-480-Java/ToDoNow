@@ -5,7 +5,6 @@ import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
 import andriypyzh.services.ProjectService;
 import org.apache.log4j.Logger;
-import org.graalvm.compiler.lir.LIRInstruction;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +20,6 @@ import java.util.stream.Collectors;
 @WebServlet("/CategoryStatus")
 public class CategoryByStatusServlet extends HttpServlet {
     Logger logger = Logger.getLogger(CategoryByStatusServlet.class);
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {

@@ -1,18 +1,23 @@
 <%--
   Created by IntelliJ IDEA.
   User: andriypyzh
-  Date: 09.02.2020
-  Time: 16:29
+  Date: 11.02.2020
+  Time: 16:58
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Not Registered</title>
+    <title>Alert Box</title>
 </head>
 <body>
-<div align="center">Cannot register</div>
-<a align = "center" href="/authentication">go back</a>
+
+<script type="text/javascript">
+    var Msg ='<%=(String)request.getAttribute("error")%>';
+    if (Msg!=="null") {
+        alert(Msg);
+    }
+</script>
 
 </body>
 </html>

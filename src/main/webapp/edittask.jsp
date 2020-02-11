@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td>Deadline</td>
-                <td><input type="text" name="Deadline" value=<%=request.getAttribute("deadline")%>></td>
+                <td><input type="date" name="Deadline" value=<%=request.getAttribute("deadline")%>></td>
             </tr>
             <tr>
                 <td>Description</td>

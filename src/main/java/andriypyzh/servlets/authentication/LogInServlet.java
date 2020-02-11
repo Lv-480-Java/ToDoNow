@@ -30,22 +30,19 @@ public class LogInServlet extends HttpServlet {
 
         LogInService logInService = new LogInService();
         HttpSession session = request.getSession();
-        if (logInService.login(session, username, password)) {
-            request.setAttribute("user", username);
+
+        try {
+            logInService.login(session,username,password);
+
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
             requestDispatcher.forward(request, response);
-        } else {
-//            response.sendRedirect("error_aut");
-            String msg = "Cannot LogIn" + username;
+        } catch (IllegalArgumentException e){
+            request.setAttribute("error",e.getMessage());
 
-            logger.warning(msg);
-
-            request.setAttribute("msg",msg);
-
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/error.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("authentication.jsp");
             requestDispatcher.forward(request, response);
-
         }
+
     }
 
 }

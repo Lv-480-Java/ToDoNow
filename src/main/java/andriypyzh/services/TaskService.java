@@ -84,4 +84,7 @@ public class TaskService {
     }
 
 
+    public Task getByName(String taskName){
+        return taskDao.getByName(taskName);
+    }
 }

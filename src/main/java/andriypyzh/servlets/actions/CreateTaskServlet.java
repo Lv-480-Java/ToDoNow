@@ -3,6 +3,7 @@ package andriypyzh.servlets.actions;
 import andriypyzh.entity.Project;
 import andriypyzh.entity.User;
 import andriypyzh.services.TaskService;
+import andriypyzh.services.validators.TaskValidator;
 import andriypyzh.servlets.authentication.RegisterServlet;
 import org.apache.log4j.Logger;
 
@@ -25,16 +26,38 @@ public class CreateTaskServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
 
-        String taskName = request.getParameter("Name");
-        int priority = Integer.parseInt(request.getParameter("Priority"));
-        java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
-        String description = request.getParameter("Description");
+        try {
+            String taskName = request.getParameter("Name");
+            //
+            int priority = Integer.parseInt(request.getParameter("Priority"));
+            java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
+            String description = request.getParameter("Description");
 
-        User user = (User) session.getAttribute("user");
-        TaskService taskService = new TaskService();
 
-        taskService.createTask(taskName, user.getUsername(), section,
-                priority, deadline, description);
+            TaskValidator taskValidator = new TaskValidator();
+            taskValidator.validateData(taskName, priority, deadline, description);
+
+            User user = (User) session.getAttribute("user");
+            TaskService taskService = new TaskService();
+
+            taskService.createTask(taskName, user.getUsername(), section,
+                    priority, deadline, description);
+
+        } catch (NumberFormatException e){
+            request.setAttribute("error", "illegal priority");
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/create_task");
+            requestDispatcher.forward(request, response);
+            return;
+        }
+        catch (IllegalArgumentException e) {
+            request.setAttribute("error", e.getMessage());
+            logger.error(e);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/create_task");
+            requestDispatcher.forward(request, response);
+            return;
+        }
 
         if (section.startsWith("Private Tasks of")) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
@@ -44,5 +67,8 @@ public class CreateTaskServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + section);
             requestDispatcher.forward(request, response);
         }
+
+
+
     }
 }

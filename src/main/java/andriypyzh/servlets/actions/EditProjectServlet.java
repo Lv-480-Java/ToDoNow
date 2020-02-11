@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -40,19 +41,19 @@ public class EditProjectServlet extends HttpServlet {
         String description = request.getParameter("Description");
         String type = request.getParameter("Type");
 
-        Project oldProject = projectService.getUsersProject(user,section);
+        Project oldProject = projectService.getUsersProject(user, section);
 
         oldProject.setName(projectName);
         oldProject.setExpirationDate(deadline);
         oldProject.setDescription(description);
         oldProject.setType(type);
 
-        projectService.updateProject(oldProject.getId(),projectName,deadline,description,type);
+        projectService.updateProject(oldProject.getId(), projectName, deadline, description, type);
 
-        request.setAttribute("project",oldProject);
+        request.setAttribute("project", oldProject);
 
         List<Project> projects = projectService.getAllUsersProjects(user);
-        session.setAttribute("projects",projects);
+        session.setAttribute("projects", projects);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + projectName);
         requestDispatcher.forward(request, response);
@@ -61,31 +62,19 @@ public class EditProjectServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        String projectName = (String) session.getAttribute("section");
 
-//        HttpSession session = request.getSession(false);
-//        String section = (String) session.getAttribute("section");
-//
-//        int taskId = Integer.parseInt(request.getParameter("task"));
-//
-//        TaskService taskService = new TaskService();
-//        Task task = taskService.getByID(taskId);
-//
-//        session.setAttribute("edittask", taskId);
-//
-//
-//        String name = task.getName();
-//        int priority = task.getPriority();
-//        String deadline = task.getExpirationDate().toString();
-//        String description = task.getDescription();
-//
-//        request.setAttribute("name", name);
-//        request.setAttribute("priority", priority);
-//        request.setAttribute("deadline", deadline);
-//        request.setAttribute("description", description);
-//
-//
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/edit_task");
-//        requestDispatcher.forward(request, response);
+        ProjectService projectService = new ProjectService();
+
+        Project project = projectService.getByName(projectName);
+
+        request.setAttribute("Name",project.getName());
+        request.setAttribute("Deadline",project.getExpirationDate());
+        request.setAttribute("Type",project.getType());
+        request.setAttribute("Description",project.getDescription());
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/edit_project");
+        requestDispatcher.forward(request, response);
     }
-
 }

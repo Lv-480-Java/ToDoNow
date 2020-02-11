@@ -2,6 +2,7 @@ package andriypyzh.services.authentication;
 
 import andriypyzh.dao.Implementation.UserDao;
 import andriypyzh.entity.User;
+import andriypyzh.services.validators.UserValidator;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
@@ -15,24 +16,23 @@ public class LogInService {
 
         UserDao userDao = new UserDao();
         User user = userDao.getByName(username);
+        UserValidator userValidator = new UserValidator();
 
-        try {
-            if (user != null) {
-                if (user.getPassword().equals(password)) {
-                    logger.info("Successfully logged");
-                    //Message
-                    session.setAttribute("user", user);
-                    return true;
-                } else {
-                    logger.info("Invalid Password");
-                }
+        userValidator.loginValidator(username, password);
+
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
+                logger.info("Successfully logged");
+                session.setAttribute("user", user);
+                return true;
             } else {
-                //Message
-                logger.warn("No such user");
+                logger.info("Invalid Password");
+                throw new IllegalArgumentException("Invalid Password");
             }
-        } catch (RuntimeException e) {
-            logger.error("Error during logining", e);
+        } else {
+            logger.info("No such user");
+            throw new IllegalArgumentException("No such user");
         }
-        return false;
+
     }
 }

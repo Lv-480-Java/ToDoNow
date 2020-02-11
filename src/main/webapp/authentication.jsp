@@ -44,6 +44,9 @@
         <input type="submit" value="Log In"/>
     </form>
 </div>
+
+<jsp:include page="alertBox.jsp"></jsp:include>
+
 </body>
 
 </html>

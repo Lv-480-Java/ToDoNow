@@ -56,7 +56,7 @@ public class ProjectServlet extends HttpServlet {
             request.setAttribute("project", project);
             session.setAttribute("section",project.getName());
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/projects");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("projects.jsp");
             requestDispatcher.forward(request, response);
 
         } catch (Exception e) {

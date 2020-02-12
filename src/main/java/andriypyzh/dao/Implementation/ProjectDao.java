@@ -29,7 +29,7 @@ public class ProjectDao extends GenericDao<Project> {
             " Projects.Description, Projects.Status, Projects.Type " +
             " FROM Projects INNER JOIN Users_Projects_Assigments " +
             " ON Users_Projects_Assigments.ProjectID = Projects.ID" +
-            " INNER JOIN Users on Users_Projects_Assigments.UserID = Users.ID" +
+            " INNER JOIN Users ON Users_Projects_Assigments.UserID = Users.ID" +
             " WHERE Users.Username = ?;";
     private static final String REMOVE_BY_ID = "DELETE FROM Projects WHERE ID = ?;";
     private static final String ASSIGN_USER = "INSERT INTO Users_Projects_Assigments(UserID, ProjectID) VALUES (?,?);";

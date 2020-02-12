@@ -31,13 +31,12 @@ public class UserValidator {
         return true;
     }
 
-    public boolean loginValidation(String username, String password){
+    public boolean loginValidation(String username, String password) {
         if (username.isEmpty() || password.isEmpty()) {
             throw new IllegalArgumentException("Empty field");
         }
         return true;
     }
-
 
     public static void main(String[] args) {
         UserDao userDao = new UserDao();

@@ -48,7 +48,7 @@ public class CreateTaskServlet extends HttpServlet {
             request.setAttribute("error", "illegal priority");
             logger.error("illegal priority");
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/create_task");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("createtask.jsp");
             requestDispatcher.forward(request, response);
             return;
         }
@@ -56,7 +56,7 @@ public class CreateTaskServlet extends HttpServlet {
             request.setAttribute("error", e.getMessage());
             logger.error(e);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/create_task");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("createtask.jsp");
             requestDispatcher.forward(request, response);
             return;
         }

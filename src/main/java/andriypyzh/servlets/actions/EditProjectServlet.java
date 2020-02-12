@@ -74,7 +74,7 @@ public class EditProjectServlet extends HttpServlet {
         request.setAttribute("Type",project.getType());
         request.setAttribute("Description",project.getDescription());
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/edit_project");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("editproject.jsp");
         requestDispatcher.forward(request, response);
     }
 }

@@ -78,30 +78,8 @@ public class EditTaskServlet extends HttpServlet {
         request.setAttribute("description", description);
 
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/edit_task");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("edittask.jsp");
         requestDispatcher.forward(request, response);
     }
 
-
-    public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
-
-        Enumeration<String> parameterNames = req.getParameterNames();
-
-        while (parameterNames.hasMoreElements()) {
-
-            String paramName = parameterNames.nextElement();
-            logger.info(paramName);
-            logger.info("\n");
-
-            String[] paramValues = req.getParameterValues(paramName);
-            for (int i = 0; i < paramValues.length; i++) {
-                String paramValue = paramValues[i];
-                logger.info("\t" + paramValue);
-                logger.info("\n");
-            }
-
-        }
-
-    }
 }

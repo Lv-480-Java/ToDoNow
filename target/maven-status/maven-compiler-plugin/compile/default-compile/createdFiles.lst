@@ -17,6 +17,7 @@ andriypyzh/servlets/sections/HomeServlet.class
 andriypyzh/dao/Implementation/TaskDao.class
 andriypyzh/servlets/sections/ProjectServlet.class
 andriypyzh/dao/Implementation/UserDao.class
+andriypyzh/filter/UserAuthenticationFilter.class
 andriypyzh/util/ConnectionFactory.class
 andriypyzh/dao/Implementation/ProjectDao.class
 andriypyzh/servlets/actions/ChangeStatusServlet.class

@@ -9,10 +9,11 @@ public class ProjectValidator {
         if (projectName.isEmpty() || description.isEmpty() || type.isEmpty()) {
             throw new IllegalArgumentException("Empty field");
         }
-        Calendar currenttime = Calendar.getInstance();
-        Date sqldate = new Date((currenttime.getTime()).getTime());
 
-        if (date.before(sqldate)) {
+        Calendar currenttime = Calendar.getInstance();
+        Date currentDate = new Date((currenttime.getTime()).getTime());
+
+        if (date.before(currentDate) || date.equals(currentDate)) {
             throw new IllegalArgumentException("Illegal date");
         }
     }

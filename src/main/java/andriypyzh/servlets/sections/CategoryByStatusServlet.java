@@ -38,7 +38,7 @@ public class CategoryByStatusServlet extends HttpServlet {
 
             request.setAttribute("tasks",tasks);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/status.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("status.jsp");
             requestDispatcher.forward(request, response);
         } catch (Exception e) {
             logger.error(e);

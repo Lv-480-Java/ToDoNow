@@ -19,6 +19,6 @@ public class LogOutServlet extends HttpServlet {
         LogOutService logoutService = new LogOutService();
 
         logoutService.logout(request.getSession());
-        response.sendRedirect("/authentication");
+        response.sendRedirect("authentication.jsp");
     }
 }

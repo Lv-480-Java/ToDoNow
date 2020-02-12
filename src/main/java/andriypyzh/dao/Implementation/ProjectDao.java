@@ -144,6 +144,7 @@ public class ProjectDao extends GenericDao<Project> {
 
             while (resultSet.next()) {
                 Project newProject = new Project();
+
                 newProject.setId(resultSet.getInt("ID"));
                 newProject.setName(resultSet.getString("Name"));
                 newProject.setCreator(resultSet.getString("Creator"));

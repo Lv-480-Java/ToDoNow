@@ -15,7 +15,7 @@
 
 <%--    <c:out value="${user}"></c:out>--%>
 
-    <a href="/authentication">OK</a>
+    <a href="authentication.jsp">OK</a>
 
 </h1>
 

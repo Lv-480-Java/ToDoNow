@@ -13,7 +13,7 @@
 <body>
 
 <div align="center">
-    <form method="post" action="/create_task">
+    <form method="post" action="createtask.jsp">
         <input type="submit" value="Add Task">
     </form>
 </div>

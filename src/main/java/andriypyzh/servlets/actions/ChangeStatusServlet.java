@@ -17,6 +17,12 @@ import java.io.IOException;
 public class ChangeStatusServlet extends HttpServlet {
     Logger logger = Logger.getLogger(ChangeStatusServlet.class);
 
+    public static final String CREATED = "created";
+    public static final String IN_PROGRESS = "in progress";
+    public static final String COMPLETED = "completed";
+
+
+
     TaskService taskService = new TaskService();
 
     @Override
@@ -54,11 +60,11 @@ public class ChangeStatusServlet extends HttpServlet {
         int id = (int) request.getAttribute("task");
         Task task = taskService.getByID(id);
 
-        if(task.getStatus().equals("created")){
-            task.setStatus("in progress");
+        if(task.getStatus().equals(CREATED)){
+            task.setStatus(IN_PROGRESS);
             taskService.updateTask(task);
-        }else if(task.getStatus().equals("in progress")){
-            task.setStatus("completed");
+        }else if(task.getStatus().equals(IN_PROGRESS)){
+            task.setStatus(COMPLETED);
             taskService.updateTask(task);
         }else {
             logger.info("CANNOT CHANGE STATUS");

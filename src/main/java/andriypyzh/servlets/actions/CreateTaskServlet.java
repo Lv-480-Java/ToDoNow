@@ -1,6 +1,5 @@
 package andriypyzh.servlets.actions;
 
-import andriypyzh.entity.Project;
 import andriypyzh.entity.User;
 import andriypyzh.services.TaskService;
 import andriypyzh.services.validators.TaskValidator;
@@ -29,9 +28,7 @@ public class CreateTaskServlet extends HttpServlet {
 
         try {
             String taskName = request.getParameter("Name");
-            //
             int priority = Integer.parseInt(request.getParameter("Priority"));
-            //
             java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
             String description = request.getParameter("Description");
 

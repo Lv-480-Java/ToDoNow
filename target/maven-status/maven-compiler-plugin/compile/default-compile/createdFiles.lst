@@ -17,7 +17,6 @@ andriypyzh/servlets/sections/HomeServlet.class
 andriypyzh/dao/Implementation/TaskDao.class
 andriypyzh/servlets/sections/ProjectServlet.class
 andriypyzh/dao/Implementation/UserDao.class
-andriypyzh/filter/UserAuthenticationFilter.class
 andriypyzh/util/ConnectionFactory.class
 andriypyzh/dao/Implementation/ProjectDao.class
 andriypyzh/servlets/actions/ChangeStatusServlet.class
@@ -25,6 +24,7 @@ andriypyzh/servlets/actions/EditTaskServlet.class
 andriypyzh/services/validators/IValidator.class
 andriypyzh/services/authentication/RegisterService.class
 andriypyzh/servlets/actions/CreateTaskServlet.class
+andriypyzh/servlets/filter/UserAuthenticationFilter.class
 andriypyzh/servlets/authentication/RegisterServlet.class
 andriypyzh/services/TaskService.class
 andriypyzh/services/ProjectService.class

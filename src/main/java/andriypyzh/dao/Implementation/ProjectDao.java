@@ -6,6 +6,7 @@ import andriypyzh.util.ConnectionFactory;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.graalvm.compiler.lir.LIRInstruction;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class ProjectDao extends GenericDao<Project> {
     private static final String ASSIGN_USER = "INSERT INTO Users_Projects_Assigments(UserID, ProjectID) VALUES (?,?);";
     private static final String UPDATE = "UPDATE Projects SET Name=?, Creator=?,CreationDate=?," +
             "ExpirationDate=?, Description=?, Status=?, Type=? WHERE ID = ?;";
+    private static final String UNASSIGN_USER = "DELETE FROM Users_Projects_Assigments WHERE UserID = ? AND ProjectID = ? ;";
 
 
 
@@ -216,6 +218,27 @@ public class ProjectDao extends GenericDao<Project> {
 
         } catch (SQLException e) {
             logger.info("Assign user Error", e);
+
+        }
+    }
+
+    public void unassignUser(Project project, User user){
+        logger.info("Unassign User");
+        Connection connection = ConnectionFactory.getInstance().getConnection();
+
+        try (PreparedStatement statement = connection.prepareStatement(UNASSIGN_USER)) {
+            System.out.println(statement.toString());
+
+            statement.setInt(1, user.getId());
+            statement.setInt(2, project.getId());
+
+            logger.info(statement.toString());
+
+            statement.execute();
+
+        } catch (SQLException e) {
+            logger.info("Unassign user Error", e);
+
         }
     }
 

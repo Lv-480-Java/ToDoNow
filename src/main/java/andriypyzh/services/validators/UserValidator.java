@@ -31,7 +31,7 @@ public class UserValidator {
         return true;
     }
 
-    public boolean loginValidator(String username,String password){
+    public boolean loginValidation(String username, String password){
         if (username.isEmpty() || password.isEmpty()) {
             throw new IllegalArgumentException("Empty field");
         }

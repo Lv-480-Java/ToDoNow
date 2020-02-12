@@ -18,10 +18,10 @@ public class TaskValidator {
         if (priority < 0) {
             throw new IllegalArgumentException("illegal priority");
         }
-        ///
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-//        java.util.Date date1 = new java.util.Date();
-//        if (date.compareTo() < 0) {
+        //
+//        Date currentDate = Date.valueOf(String.valueOf(LocalDateTime.now()));
+//
+//        if (date.before(currentDate)) {
 //            throw new IllegalArgumentException("Illegal date");
 //        }
     }

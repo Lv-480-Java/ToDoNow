@@ -13,9 +13,8 @@
 <body>
 
 <jsp:include page="common/header.jsp"></jsp:include>
-
 <jsp:include page="menu.jsp"></jsp:include>
-
+<jsp:include page="createprojectbutton.jsp"></jsp:include>
 <jsp:include page="tasks.jsp"></jsp:include>
 
 </body>

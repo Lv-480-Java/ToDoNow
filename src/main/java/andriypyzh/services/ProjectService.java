@@ -47,8 +47,6 @@ public class ProjectService {
         projectDao.add(project);
 
         projectDao.assignUser(projectDao.getByName(projectName), user);
-
-
     }
 
     public Project getUsersProject(User user, String projectName) {
@@ -96,5 +94,11 @@ public class ProjectService {
 
     public Project getByName(String projectName) {
         return projectDao.getByName(projectName);
+    }
+
+    public void removeByName(String projectName,User user) {
+        Project project = getByName(projectName);
+        projectDao.unassignUser(project,user);
+        projectDao.removeById(project.getId());
     }
 }

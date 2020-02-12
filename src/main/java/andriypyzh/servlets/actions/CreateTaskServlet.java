@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Properties;
+
+
 
 @WebServlet("/CreateTask")
 public class CreateTaskServlet extends HttpServlet {
@@ -30,9 +31,9 @@ public class CreateTaskServlet extends HttpServlet {
             String taskName = request.getParameter("Name");
             //
             int priority = Integer.parseInt(request.getParameter("Priority"));
+            //
             java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
             String description = request.getParameter("Description");
-
 
             TaskValidator taskValidator = new TaskValidator();
             taskValidator.validateData(taskName, priority, deadline, description);
@@ -41,10 +42,11 @@ public class CreateTaskServlet extends HttpServlet {
             TaskService taskService = new TaskService();
 
             taskService.createTask(taskName, user.getUsername(), section,
-                    priority, deadline, description);
+                                    priority, deadline, description);
 
         } catch (NumberFormatException e){
             request.setAttribute("error", "illegal priority");
+            logger.error("illegal priority");
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/create_task");
             requestDispatcher.forward(request, response);
@@ -67,8 +69,6 @@ public class CreateTaskServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + section);
             requestDispatcher.forward(request, response);
         }
-
-
 
     }
 }

@@ -47,6 +47,7 @@ public class ProjectServlet extends HttpServlet {
 
             //
             String projectName = request.getParameter("project").replace("+"," ");
+            //
 
             Project project = projectService.getUsersProject(user, projectName);
             List<Task> tasks = projectService.getProjectTasks(user, projectName);

@@ -12,8 +12,6 @@
         <li><a href="/CategoryStatus?status=created">Created</a></li>
         <li><a href="/CategoryStatus?status=in+progress">In Progress</a></li>
         <li><a href="/CategoryStatus?status=completed">Completed</a></li>
-<%--        //--%>
-        <li><a href="/failed">Failed</a></li>
 
         <%
             List<Project> projects = (List<Project>) session.getAttribute("projects");

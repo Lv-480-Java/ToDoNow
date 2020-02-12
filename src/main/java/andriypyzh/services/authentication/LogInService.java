@@ -18,7 +18,7 @@ public class LogInService {
         User user = userDao.getByName(username);
         UserValidator userValidator = new UserValidator();
 
-        userValidator.loginValidator(username, password);
+        userValidator.loginValidation(username, password);
 
         if (user != null) {
             if (user.getPassword().equals(password)) {

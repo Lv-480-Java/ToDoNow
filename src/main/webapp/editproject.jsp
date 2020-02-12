@@ -29,6 +29,7 @@
         <input type="submit" value="Edit"/>
 
         <a href="/home"> Cancel </a>
+        <a href="/DeleteProject"> Delete </a>
 
     </form>
 </div>

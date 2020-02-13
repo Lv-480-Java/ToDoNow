@@ -30,7 +30,6 @@ public class CategoryByStatusServlet extends HttpServlet {
 
         ProjectService projectService = new ProjectService();
 
-
         try {
             List<Task> tasks = projectService.getTasksByStatusOfUser(user);
             tasks = tasks.stream().filter((x)->x.getStatus().equals(status))

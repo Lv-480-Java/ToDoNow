@@ -9,6 +9,9 @@ public class ProjectValidator {
         if (projectName.isEmpty() || description.isEmpty() || type.isEmpty()) {
             throw new IllegalArgumentException("Empty field");
         }
+        if (!projectName.matches("[A-Za-z0-9_ ]+")) {
+            throw new IllegalArgumentException("Illegal taskName");
+        }
 
         Calendar currenttime = Calendar.getInstance();
         Date currentDate = new Date((currenttime.getTime()).getTime());

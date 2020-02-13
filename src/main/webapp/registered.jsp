@@ -7,17 +7,9 @@
     <title>Registered Page</title>
 </head>
 <body>
-<h1>Successfully registered
+<h4 align="center">Successfully registered <%out.print(request.getAttribute("user"));%></h4>
+<h3 align="center" href="/authentication.jsp">OK</h3>
 
-    <%
-        out.print(request.getAttribute("user"));
-    %>
-
-<%--    <c:out value="${user}"></c:out>--%>
-
-    <a href="authentication.jsp">OK</a>
-
-</h1>
 
 <%--<c:out value="${requestScope.user}">m</c:out>--%>
 

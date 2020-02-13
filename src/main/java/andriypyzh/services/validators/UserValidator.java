@@ -38,9 +38,4 @@ public class UserValidator {
         return true;
     }
 
-    public static void main(String[] args) {
-        UserDao userDao = new UserDao();
-        System.out.println(userDao.getByName("andriy"));
-    }
-
 }

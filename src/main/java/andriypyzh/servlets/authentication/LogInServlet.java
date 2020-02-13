@@ -32,12 +32,12 @@ public class LogInServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
-            logInService.login(session,username,password);
+            logInService.login(session, username, password);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
             requestDispatcher.forward(request, response);
-        } catch (IllegalArgumentException e){
-            request.setAttribute("error",e.getMessage());
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("error", e.getMessage());
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("authentication.jsp");
             requestDispatcher.forward(request, response);

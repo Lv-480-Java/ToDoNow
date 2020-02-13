@@ -1,4 +1,4 @@
-package andriypyzh.servlets.actions;
+package andriypyzh.servlets.actions.delete;
 
 import andriypyzh.services.TaskService;
 import org.apache.log4j.Logger;
@@ -21,12 +21,12 @@ public class DeleteTaskServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
 
-        int taskId =(int)session.getAttribute("edittask");
+        int taskId = (int) session.getAttribute("edittask");
 
-        TaskService taskService= new TaskService();
+        TaskService taskService = new TaskService();
         taskService.deleteTask(taskId);
 
-        if (section.startsWith("Private Tasks of")) {
+        if (section.startsWith("Tasks of")) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
             requestDispatcher.forward(request, response);
         } else {

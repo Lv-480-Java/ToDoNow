@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: andriypyzh
-  Date: 05.02.2020
-  Time: 13:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,8 +19,7 @@
             <tr>
                 <td>Deadline</td>
                 <td><input type="date" id="start" name="Deadline"
-                           value=<%= new java.sql.Date(System.currentTimeMillis()) %>
-                                   min=<%= new java.sql.Date(System.currentTimeMillis()) %>></td>
+                           value=<%= new java.sql.Date(System.currentTimeMillis()) %>></td>
             </tr>
             <tr>
                 <td>Description</td>
@@ -41,6 +33,6 @@
     </form>
 </div>
 
-<jsp:include page="alertBox.jsp"></jsp:include>
+<jsp:include page="../elements/alertBox.jsp"></jsp:include>
 </body>
 </html>

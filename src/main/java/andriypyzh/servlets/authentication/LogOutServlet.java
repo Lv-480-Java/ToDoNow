@@ -15,7 +15,7 @@ public class LogOutServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(LogOutServlet.class.getName());
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         LogOutService logoutService = new LogOutService();
 
         logoutService.logout(request.getSession());

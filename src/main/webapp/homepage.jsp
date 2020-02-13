@@ -11,7 +11,7 @@
 
 <jsp:include page="common/header.jsp"></jsp:include>
 
-<jsp:include page="menu.jsp"></jsp:include>
+<jsp:include page="elements/menu.jsp"></jsp:include>
 
 <p align="center">
 <%
@@ -19,9 +19,9 @@
 %>
 </p>
 
-<jsp:include page="createtaskbutton.jsp"></jsp:include>
-<jsp:include page="createprojectbutton.jsp"></jsp:include>
-<jsp:include page="tasks.jsp"></jsp:include>
+<jsp:include page="buttons/createtaskbutton.jsp"></jsp:include>
+<jsp:include page="buttons/createprojectbutton.jsp"></jsp:include>
+<jsp:include page="elements/tasks.jsp"></jsp:include>
 
 </body>
 </html>

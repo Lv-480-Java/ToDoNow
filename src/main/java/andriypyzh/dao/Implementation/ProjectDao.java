@@ -7,6 +7,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.graalvm.compiler.lir.LIRInstruction;
+import org.graalvm.compiler.lir.phases.LIRSuites;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -31,6 +32,12 @@ public class ProjectDao extends GenericDao<Project> {
             " ON Users_Projects_Assigments.ProjectID = Projects.ID" +
             " INNER JOIN Users ON Users_Projects_Assigments.UserID = Users.ID" +
             " WHERE Users.Username = ?;";
+
+    private static final String GET_ASSIGNED_USERS = "SELECT Users.Username"+
+            " FROM Projects INNER JOIN Users_Projects_Assigments"+
+            " ON Users_Projects_Assigments.ProjectID = Projects.ID INNER JOIN Users"+
+            " ON Users_Projects_Assigments.UserID = Users.ID"+
+            " WHERE ProjectID = ?;";
     private static final String REMOVE_BY_ID = "DELETE FROM Projects WHERE ID = ?;";
     private static final String ASSIGN_USER = "INSERT INTO Users_Projects_Assigments(UserID, ProjectID) VALUES (?,?);";
     private static final String UPDATE = "UPDATE Projects SET Name=?, Creator=?,CreationDate=?," +
@@ -94,6 +101,7 @@ public class ProjectDao extends GenericDao<Project> {
         return newProject;
     }
 
+
     @Override
     public Project getByName(String name) {
         logger.info("Project Get By Name");
@@ -125,6 +133,30 @@ public class ProjectDao extends GenericDao<Project> {
             logger.error("Get Project by Name Error", e);
         }
         return newProject;
+    }
+
+    public List<String> getAllAssignedUsers(Project project){
+        logger.info("Project Get By User");
+
+        List<String> usernames = new ArrayList<>();
+
+        Connection connection = ConnectionFactory.getInstance().getConnection();
+
+        try (PreparedStatement statement = connection.prepareStatement(GET_ASSIGNED_USERS)) {
+
+            statement.setInt(1, project.getId());
+
+            logger.info(statement.toString());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                usernames.add(resultSet.getString("Username"));
+            }
+        } catch (SQLException e){
+            logger.error("Get Assigned Users error",e);
+        }
+        return usernames;
     }
 
     public List<Project> getAllByUser(User user) {

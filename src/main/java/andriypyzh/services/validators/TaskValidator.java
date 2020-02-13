@@ -10,12 +10,16 @@ public class TaskValidator {
         if (taskName.isEmpty() || description.isEmpty()) {
             throw new IllegalArgumentException("Empty field");
         }
+        if (!taskName.matches("[A-Za-z0-9_ ]+")) {
+            throw new IllegalArgumentException("Illegal taskName");
+        }
         if (priority < 0) {
             throw new IllegalArgumentException("illegal priority");
         }
 
         Calendar currenttime = Calendar.getInstance();
         Date currentDate = new Date((currenttime.getTime()).getTime());
+
 
         if (date.before(currentDate) || date.equals(currentDate)) {
             throw new IllegalArgumentException("Illegal date");

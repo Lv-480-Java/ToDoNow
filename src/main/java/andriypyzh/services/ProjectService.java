@@ -2,6 +2,7 @@ package andriypyzh.services;
 
 import andriypyzh.dao.Implementation.ProjectDao;
 import andriypyzh.dao.Implementation.TaskDao;
+import andriypyzh.dao.Implementation.UserDao;
 import andriypyzh.entity.Project;
 import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
@@ -12,7 +13,10 @@ import javax.persistence.criteria.Predicate;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 public class ProjectService {
@@ -20,6 +24,7 @@ public class ProjectService {
 
     private ProjectDao projectDao = new ProjectDao();
     private TaskDao taskDao = new TaskDao();
+    private UserDao userDao = new UserDao();
 
 
     public void updateProject(int id, String projectName, Date deadline, String description, String type) {
@@ -100,5 +105,25 @@ public class ProjectService {
         Project project = getByName(projectName);
         projectDao.unassignUser(project,user);
         projectDao.removeById(project.getId());
+    }
+
+    public List<String> getAssignedUsers(Project project){
+        return projectDao.getAllAssignedUsers(project);
+    }
+
+    public List<String> getNotAssignedUsers(Project project){
+        List<String> assignedUsernames = getAssignedUsers(project);
+        List<String> usernames = userDao.getAll().stream()
+                .filter(user -> !assignedUsernames.contains(user.getUsername()))
+                .map(User::getUsername)
+                .collect(Collectors.toList());
+        return usernames;
+    }
+
+    public void assignUserToProject(User user,Project project){
+        projectDao.assignUser(project,user);
+    }
+    public void unassignUserToProject(User user,Project project){
+        projectDao.unassignUser(project,user);
     }
 }

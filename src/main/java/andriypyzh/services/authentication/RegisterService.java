@@ -29,12 +29,12 @@ public class RegisterService {
             Calendar calendar = Calendar.getInstance();
             java.sql.Date creationDate = new java.sql.Date(calendar.getTime().getTime());
 
-            Project project = new Project(0, "Private Tasks of " + username, username,
+            Project project = new Project(0, "Tasks of " + username, username,
                     creationDate, new Date(1000L), "", "in procces", "default");
 
             projectDao.add(project);
 
-            projectDao.assignUser(projectDao.getByName("Private Tasks of " + username),
+            projectDao.assignUser(projectDao.getByName("Tasks of " + username),
                                   userDao.getByName(user.getUsername()));
         }
         catch (IllegalArgumentException e){

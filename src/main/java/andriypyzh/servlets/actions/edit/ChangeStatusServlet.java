@@ -1,4 +1,4 @@
-package andriypyzh.servlets.actions;
+package andriypyzh.servlets.actions.edit;
 
 import andriypyzh.entity.Task;
 import andriypyzh.services.TaskService;
@@ -22,7 +22,6 @@ public class ChangeStatusServlet extends HttpServlet {
     public static final String COMPLETED = "completed";
 
 
-
     TaskService taskService = new TaskService();
 
     @Override
@@ -31,20 +30,20 @@ public class ChangeStatusServlet extends HttpServlet {
         int id = Integer.valueOf(request.getParameter("task"));
         Task task = taskService.getByID(id);
 
-        if(task.getStatus().equals("created")){
+        if (task.getStatus().equals("created")) {
             task.setStatus("in progress");
             taskService.updateTask(task);
-        }else if(task.getStatus().equals("in progress")){
+        } else if (task.getStatus().equals("in progress")) {
             task.setStatus("completed");
             taskService.updateTask(task);
-        }else {
+        } else {
             logger.info("CANNOT CHANGE STATUS");
         }
 
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
 
-        if (section.startsWith("Private Tasks of")) {
+        if (section.startsWith("$")) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
             requestDispatcher.forward(request, response);
         } else {
@@ -55,18 +54,18 @@ public class ChangeStatusServlet extends HttpServlet {
     }
 
 
-        @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = (int) request.getAttribute("task");
         Task task = taskService.getByID(id);
 
-        if(task.getStatus().equals(CREATED)){
+        if (task.getStatus().equals(CREATED)) {
             task.setStatus(IN_PROGRESS);
             taskService.updateTask(task);
-        }else if(task.getStatus().equals(IN_PROGRESS)){
+        } else if (task.getStatus().equals(IN_PROGRESS)) {
             task.setStatus(COMPLETED);
             taskService.updateTask(task);
-        }else {
+        } else {
             logger.info("CANNOT CHANGE STATUS");
         }
 

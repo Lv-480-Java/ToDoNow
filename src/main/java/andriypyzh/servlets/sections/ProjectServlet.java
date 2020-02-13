@@ -54,9 +54,16 @@ public class ProjectServlet extends HttpServlet {
 
             request.setAttribute("tasks", tasks);
             request.setAttribute("project", project);
+            request.setAttribute("assignments",projectService.getAssignedUsers(project));
             session.setAttribute("section",project.getName());
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("projects.jsp");
+            if (project.getName().startsWith("Tasks of")){
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
+                requestDispatcher.forward(request, response);
+                return;
+            }
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/elements/projects.jsp");
             requestDispatcher.forward(request, response);
 
         } catch (Exception e) {

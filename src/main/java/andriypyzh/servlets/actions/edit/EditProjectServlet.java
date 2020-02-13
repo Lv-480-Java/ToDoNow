@@ -1,10 +1,8 @@
-package andriypyzh.servlets.actions;
+package andriypyzh.servlets.actions.edit;
 
 import andriypyzh.entity.Project;
-import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
 import andriypyzh.services.ProjectService;
-import andriypyzh.services.TaskService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -15,11 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.util.Date;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Properties;
 
 
 @WebServlet("/EditProject")
@@ -69,12 +63,12 @@ public class EditProjectServlet extends HttpServlet {
 
         Project project = projectService.getByName(projectName);
 
-        request.setAttribute("Name",project.getName());
-        request.setAttribute("Deadline",project.getExpirationDate());
-        request.setAttribute("Type",project.getType());
-        request.setAttribute("Description",project.getDescription());
+        request.setAttribute("Name", project.getName());
+        request.setAttribute("Deadline", project.getExpirationDate());
+        request.setAttribute("Type", project.getType());
+        request.setAttribute("Description", project.getDescription());
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("editproject.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/editproject.jsp");
         requestDispatcher.forward(request, response);
     }
 }

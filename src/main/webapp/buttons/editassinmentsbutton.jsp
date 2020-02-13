@@ -1,23 +1,20 @@
 <%--
   Created by IntelliJ IDEA.
   User: andriypyzh
-  Date: 09.02.2020
-  Time: 10:45
+  Date: 13.02.2020
+  Time: 18:22
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Create Task Button</title>
+    <title>Assignments</title>
 </head>
 <body>
-
 <div align="center">
-    <form method="post" action="createtask.jsp">
-        <input type="submit" value="Add Task">
+    <form method="get" action="/EditAssignments">
+        <input type="submit" value="Edit Assignments">
     </form>
 </div>
-
-
 </body>
 </html>

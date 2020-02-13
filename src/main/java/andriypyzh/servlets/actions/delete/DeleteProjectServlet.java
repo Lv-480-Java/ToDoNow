@@ -1,11 +1,10 @@
-package andriypyzh.servlets.actions;
+package andriypyzh.servlets.actions.delete;
 
 import andriypyzh.entity.Project;
 import andriypyzh.entity.User;
 import andriypyzh.services.ProjectService;
-import andriypyzh.services.TaskService;
+import andriypyzh.servlets.actions.delete.DeleteTaskServlet;
 import org.apache.log4j.Logger;
-import org.graalvm.compiler.lir.LIRInstruction;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

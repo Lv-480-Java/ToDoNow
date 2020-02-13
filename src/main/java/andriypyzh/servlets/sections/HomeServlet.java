@@ -51,7 +51,7 @@ public class HomeServlet extends HttpServlet {
 
             request.setAttribute("tasks", tasks);
             session.setAttribute("projects", projects);
-            session.setAttribute("section", "Private Tasks of " + user.getUsername());
+            session.setAttribute("section", "Tasks of " + user.getUsername());
 
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("homepage.jsp");

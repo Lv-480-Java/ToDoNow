@@ -1,4 +1,4 @@
-package andriypyzh.servlets.actions;
+package andriypyzh.servlets.actions.edit;
 
 import andriypyzh.entity.Task;
 import andriypyzh.services.TaskService;
@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
 
 
 @WebServlet("/EditTask")
@@ -26,8 +24,12 @@ public class EditTaskServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
+        int taskId=0;
+        try {
+            taskId = (int) session.getAttribute("edittask");
+        } catch (NumberFormatException e){
 
-        int taskId =(int)session.getAttribute("edittask");
+        }
 
         String taskName = (String) request.getParameter("Name");
         int priority = Integer.parseInt(request.getParameter("Priority"));
@@ -43,7 +45,7 @@ public class EditTaskServlet extends HttpServlet {
 
         taskService.updateTask(task);
 
-        if (section.startsWith("Private Tasks of")) {
+        if (section.startsWith("Tasks of ")) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
             requestDispatcher.forward(request, response);
         } else {
@@ -60,17 +62,18 @@ public class EditTaskServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
 
-        int taskId = Integer.parseInt( request.getParameter("task"));
+        int taskId = Integer.parseInt(request.getParameter("task"));
 
         TaskService taskService = new TaskService();
         Task task = taskService.getByID(taskId);
 
-        session.setAttribute("edittask",taskId);
+        session.setAttribute("edittask", taskId);
 
         String name = task.getName();
         int priority = task.getPriority();
         String deadline = task.getExpirationDate().toString();
         String description = task.getDescription();
+
 
         request.setAttribute("name", name);
         request.setAttribute("priority", priority);
@@ -78,7 +81,7 @@ public class EditTaskServlet extends HttpServlet {
         request.setAttribute("description", description);
 
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("edittask.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/edittask.jsp");
         requestDispatcher.forward(request, response);
     }
 

@@ -35,7 +35,6 @@ public class TaskService {
     }
 
 
-
     public void createTask(String name, String username, String project,
                            int priority, Date deadline, String description) {
 
@@ -58,7 +57,7 @@ public class TaskService {
             List<Project> projects = projectDao.getAllByUser(user);
             for (Project project : projects) {
                 System.out.println(project.getType());
-                if (project.getName().equals("Private Tasks of " + user.getUsername())) {
+                if (project.getName().equals("Tasks of " + user.getUsername())) {
                     return taskDao.getAllByProject(project.getId());
                 }
             }

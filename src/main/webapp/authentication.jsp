@@ -45,7 +45,7 @@
     </form>
 </div>
 
-<jsp:include page="alertBox.jsp"></jsp:include>
+<jsp:include page="elements/alertBox.jsp"></jsp:include>
 
 </body>
 

@@ -75,4 +75,21 @@ public class TaskService {
     public Task getByName(String taskName) {
         return taskDao.getByName(taskName);
     }
+
+
+    public static final String CREATED = "created";
+    public static final String IN_PROGRESS = "in progress";
+    public static final String COMPLETED = "completed";
+
+    public void changeStatus(Task task){
+        if (task.getStatus().equals(CREATED)) {
+            task.setStatus(IN_PROGRESS);
+            updateTask(task);
+        } else if (task.getStatus().equals(IN_PROGRESS)) {
+            task.setStatus(COMPLETED);
+            updateTask(task);
+        } else {
+            logger.info("CANNOT CHANGE STATUS");
+        }
+    }
 }

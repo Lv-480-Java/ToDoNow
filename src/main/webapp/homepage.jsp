@@ -6,16 +6,11 @@
 </head>
 <body>
 
-
 <jsp:include page="common/header.jsp"></jsp:include>
 
 <jsp:include page="elements/menu.jsp"></jsp:include>
 
-<p align="center">
-<%
-    out.print(session.getAttribute("section"));
-%>
-</p>
+<p align="center"><%out.print(session.getAttribute("section"));%></p>
 
 <jsp:include page="buttons/createtaskbutton.jsp"></jsp:include>
 <jsp:include page="buttons/createprojectbutton.jsp"></jsp:include>

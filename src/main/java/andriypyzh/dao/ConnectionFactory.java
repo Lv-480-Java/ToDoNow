@@ -1,4 +1,4 @@
-package andriypyzh.util;
+package andriypyzh.dao;
 
 import org.apache.log4j.Logger;
 

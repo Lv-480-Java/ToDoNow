@@ -1,7 +1,7 @@
 package andriypyzh.dao.Implementation;
 
 import andriypyzh.entity.User;
-import andriypyzh.util.ConnectionFactory;
+import andriypyzh.dao.ConnectionFactory;
 import org.apache.log4j.Logger;
 
 import java.sql.*;

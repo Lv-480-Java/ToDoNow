@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 public class UserValidator {
     Logger logger = Logger.getLogger(UserValidator.class);
 
-    public boolean registerValidation(String username, String password, String confirmPassword) {
+    public static boolean registerValidation(String username, String password, String confirmPassword) {
         UserDao userDao = new UserDao();
 
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
@@ -24,7 +24,7 @@ public class UserValidator {
         return true;
     }
 
-    public boolean loginValidation(String username, String password) {
+    public static boolean loginValidation(String username, String password) {
         if (username.isEmpty() || password.isEmpty()) {
             throw new IllegalArgumentException("Empty field");
         }

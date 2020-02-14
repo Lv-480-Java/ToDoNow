@@ -16,13 +16,12 @@ andriypyzh/dao/Implementation/TaskDao.class
 andriypyzh/servlets/sections/ProjectServlet.class
 andriypyzh/dao/Implementation/UserDao.class
 andriypyzh/servlets/actions/edit/EditProjectServlet.class
-andriypyzh/util/ConnectionFactory.class
 andriypyzh/dao/Implementation/ProjectDao.class
 andriypyzh/services/validators/IValidator.class
 andriypyzh/services/authentication/RegisterService.class
 andriypyzh/servlets/actions/edit/EditAssignments.class
 andriypyzh/servlets/actions/delete/DeleteProjectServlet.class
-andriypyzh/servlets/filter/UserAuthenticationFilter.class
+andriypyzh/dao/ConnectionFactory.class
 andriypyzh/servlets/actions/create/CreateTaskServlet.class
 andriypyzh/servlets/authentication/RegisterServlet.class
 andriypyzh/services/TaskService.class

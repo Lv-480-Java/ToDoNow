@@ -15,9 +15,7 @@ import java.io.IOException;
 
 @WebServlet("/ChangeStatus")
 public class ChangeStatusServlet extends HttpServlet {
-    public static final String CREATED = "created";
-    public static final String IN_PROGRESS = "in progress";
-    public static final String COMPLETED = "completed";
+
     Logger logger = Logger.getLogger(ChangeStatusServlet.class);
     TaskService taskService = new TaskService();
 
@@ -27,15 +25,7 @@ public class ChangeStatusServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("task"));
         Task task = taskService.getByID(id);
 
-        if (task.getStatus().equals("created")) {
-            task.setStatus("in progress");
-            taskService.updateTask(task);
-        } else if (task.getStatus().equals("in progress")) {
-            task.setStatus("completed");
-            taskService.updateTask(task);
-        } else {
-            logger.info("CANNOT CHANGE STATUS");
-        }
+        taskService.changeStatus(task);
 
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
@@ -50,21 +40,12 @@ public class ChangeStatusServlet extends HttpServlet {
         }
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = (int) request.getAttribute("task");
         Task task = taskService.getByID(id);
 
-        if (task.getStatus().equals(CREATED)) {
-            task.setStatus(IN_PROGRESS);
-            taskService.updateTask(task);
-        } else if (task.getStatus().equals(IN_PROGRESS)) {
-            task.setStatus(COMPLETED);
-            taskService.updateTask(task);
-        } else {
-            logger.info("CANNOT CHANGE STATUS");
-        }
+        taskService.changeStatus(task);
 
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
@@ -72,4 +53,6 @@ public class ChangeStatusServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + section);
         requestDispatcher.forward(request, response);
     }
+
+
 }

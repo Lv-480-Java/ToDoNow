@@ -45,7 +45,7 @@
     <button onclick="removeUser()">Unassign</button>
 </div>
 
-<a href="/home" > Cancel </a>
+<div align="center"><a href="/home" > Cancel </a></div>
 
 <script>
     function addUser() {

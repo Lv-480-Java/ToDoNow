@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 public class TaskValidator {
 
-    public void validateData(String taskName, int priority, Date date, String description) {
+    public static void validateData(String taskName, int priority, Date date, String description) {
         if (taskName.isEmpty() || description.isEmpty()) {
             throw new IllegalArgumentException("Empty field");
         }

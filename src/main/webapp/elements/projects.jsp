@@ -1,7 +1,4 @@
 <%@ page import="andriypyzh.entity.Project" %>
-<%@ page import="andriypyzh.dao.Implementation.UserDao" %>
-<%@ page import="andriypyzh.dao.Implementation.ProjectDao" %>
-<%@ page import="andriypyzh.entity.User" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

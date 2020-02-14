@@ -3,21 +3,19 @@ package andriypyzh.dao.Implementation;
 import andriypyzh.entity.Project;
 import andriypyzh.entity.User;
 import andriypyzh.util.ConnectionFactory;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.graalvm.compiler.lir.LIRInstruction;
-import org.graalvm.compiler.lir.phases.LIRSuites;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ProjectDao extends GenericDao<Project> {
-
     private static final Logger logger = LogManager.getLogger(ProjectDao.class);
-
 
     private static final String ADD = "INSERT INTO Projects( Name, Creator, CreationDate," +
             " ExpirationDate, Description, Status, Type) VALUES (?,?,?,?,?,?,?)";
@@ -33,17 +31,16 @@ public class ProjectDao extends GenericDao<Project> {
             " INNER JOIN Users ON Users_Projects_Assigments.UserID = Users.ID" +
             " WHERE Users.Username = ?;";
 
-    private static final String GET_ASSIGNED_USERS = "SELECT Users.Username"+
-            " FROM Projects INNER JOIN Users_Projects_Assigments"+
-            " ON Users_Projects_Assigments.ProjectID = Projects.ID INNER JOIN Users"+
-            " ON Users_Projects_Assigments.UserID = Users.ID"+
+    private static final String GET_ASSIGNED_USERS = "SELECT Users.Username" +
+            " FROM Projects INNER JOIN Users_Projects_Assigments" +
+            " ON Users_Projects_Assigments.ProjectID = Projects.ID INNER JOIN Users" +
+            " ON Users_Projects_Assigments.UserID = Users.ID" +
             " WHERE ProjectID = ?;";
     private static final String REMOVE_BY_ID = "DELETE FROM Projects WHERE ID = ?;";
     private static final String ASSIGN_USER = "INSERT INTO Users_Projects_Assigments(UserID, ProjectID) VALUES (?,?);";
     private static final String UPDATE = "UPDATE Projects SET Name=?, Creator=?,CreationDate=?," +
             "ExpirationDate=?, Description=?, Status=?, Type=? WHERE ID = ?;";
     private static final String UNASSIGN_USER = "DELETE FROM Users_Projects_Assigments WHERE UserID = ? AND ProjectID = ? ;";
-
 
 
     @Override
@@ -135,7 +132,7 @@ public class ProjectDao extends GenericDao<Project> {
         return newProject;
     }
 
-    public List<String> getAllAssignedUsers(Project project){
+    public List<String> getAllAssignedUsers(Project project) {
         logger.info("Project Get By User");
 
         List<String> usernames = new ArrayList<>();
@@ -150,11 +147,11 @@ public class ProjectDao extends GenericDao<Project> {
 
             ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 usernames.add(resultSet.getString("Username"));
             }
-        } catch (SQLException e){
-            logger.error("Get Assigned Users error",e);
+        } catch (SQLException e) {
+            logger.error("Get Assigned Users error", e);
         }
         return usernames;
     }
@@ -255,7 +252,7 @@ public class ProjectDao extends GenericDao<Project> {
         }
     }
 
-    public void unassignUser(Project project, User user){
+    public void unassignUser(Project project, User user) {
         logger.info("Unassign User");
         Connection connection = ConnectionFactory.getInstance().getConnection();
 
@@ -273,13 +270,5 @@ public class ProjectDao extends GenericDao<Project> {
             logger.info("Unassign user Error", e);
 
         }
-    }
-
-    public static void main(String[] args) {
-
-         ProjectDao projectDao = new ProjectDao();
-         UserDao userDao = new UserDao();
-         projectDao.assignUser(projectDao.getById(6),userDao.getById(9));
-
     }
 }

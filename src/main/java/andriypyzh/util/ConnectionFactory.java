@@ -1,16 +1,19 @@
 package andriypyzh.util;
+
 import org.apache.log4j.Logger;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectionFactory {
-    private static Logger logger = Logger.getLogger(ConnectionFactory.class.getName());
-
     private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "11111111";
     private static final String CONNNECTION_URL = "jdbc:mysql://localhost:3306";
     private static final String DATABASE_NAME = "USE ToDoList;";
-
+    private static Logger logger = Logger.getLogger(ConnectionFactory.class.getName());
     private static ConnectionFactory DBconnection;
     private Connection connection = null;
 
@@ -23,7 +26,7 @@ public class ConnectionFactory {
             Statement statement = connection.createStatement();
             statement.executeQuery(DATABASE_NAME);
         } catch (ClassNotFoundException | SQLException e) {
-            logger.error("Problem with db connection",e);
+            logger.error("Problem with db connection", e);
         }
     }
 
@@ -39,9 +42,4 @@ public class ConnectionFactory {
     public Connection getConnection() {
         return connection;
     }
-
-
-//    public static void main(String[] args) {
-//        getConnection();
-//    }
 }

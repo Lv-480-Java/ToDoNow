@@ -11,7 +11,6 @@ import java.io.IOException;
 
 @WebServlet("/LogOutServlet")
 public class LogOutServlet extends HttpServlet {
-
     private static Logger logger = Logger.getLogger(LogOutServlet.class.getName());
 
     @Override

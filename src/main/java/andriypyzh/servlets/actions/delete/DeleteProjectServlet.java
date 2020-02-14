@@ -3,7 +3,6 @@ package andriypyzh.servlets.actions.delete;
 import andriypyzh.entity.Project;
 import andriypyzh.entity.User;
 import andriypyzh.services.ProjectService;
-import andriypyzh.servlets.actions.delete.DeleteTaskServlet;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -27,7 +26,7 @@ public class DeleteProjectServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         ProjectService projectService = new ProjectService();
-        projectService.removeByName(section,user);
+        projectService.removeByName(section, user);
 
         List<Project> projects = projectService.getAllUsersProjects(user);
         session.setAttribute("projects", projects);

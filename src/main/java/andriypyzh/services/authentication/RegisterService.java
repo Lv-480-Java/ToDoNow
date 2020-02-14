@@ -21,7 +21,7 @@ public class RegisterService {
         UserValidator validator = new UserValidator();
 
         try {
-            validator.registerValidation(username,password,confirmPassword);
+            validator.registerValidation(username, password, confirmPassword);
 
             User user = new User(username, password);
             userDao.add(user);
@@ -35,14 +35,11 @@ public class RegisterService {
             projectDao.add(project);
 
             projectDao.assignUser(projectDao.getByName("Tasks of " + username),
-                                  userDao.getByName(user.getUsername()));
-        }
-        catch (IllegalArgumentException e){
+                    userDao.getByName(user.getUsername()));
+        } catch (IllegalArgumentException e) {
             logger.error(e);
             throw e;
-        }
-
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             logger.error("Registration Failed", e);
             throw e;
         }

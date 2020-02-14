@@ -14,16 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.util.List;
 
 @WebServlet("/Projects")
 public class ProjectServlet extends HttpServlet {
 
     Logger logger = Logger.getLogger(RegisterServlet.class.getName());
+
     @Override
-    protected void doPost(HttpServletRequest request,HttpServletResponse response){
-        doGet(request,response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        doGet(request, response);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ProjectServlet extends HttpServlet {
             request.setAttribute("projects", projects);
 
             //
-            String projectName = request.getParameter("project").replace("+"," ");
+            String projectName = request.getParameter("project").replace("+", " ");
             //
 
             Project project = projectService.getUsersProject(user, projectName);
@@ -54,10 +54,10 @@ public class ProjectServlet extends HttpServlet {
 
             request.setAttribute("tasks", tasks);
             request.setAttribute("project", project);
-            request.setAttribute("assignments",projectService.getAssignedUsers(project));
-            session.setAttribute("section",project.getName());
+            request.setAttribute("assignments", projectService.getAssignedUsers(project));
+            session.setAttribute("section", project.getName());
 
-            if (project.getName().startsWith("Tasks of")){
+            if (project.getName().startsWith("Tasks of")) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
                 requestDispatcher.forward(request, response);
                 return;

@@ -6,8 +6,10 @@ import andriypyzh.util.ConnectionFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -224,36 +226,4 @@ public class TaskDao extends GenericDao<Task> {
         }
     }
 
-    public static void main(String[] args) {
-        TaskDao taskDao = new TaskDao();
-
-        Task task1 = new Task(0, "task1", "ilon", 1, 3,
-                new Date(1000L), new Date(1000L), "hello world", "Created");
-        Task task2 = new Task(1, "task2", "ilon", 1, 3,
-                new Date(1000L), new Date(1000L), "hello world", "Created");
-        Task task3 = new Task(2, "task3", "ilon", 1, 3,
-                new Date(1000L), new Date(1000L), "hello world", "Created");
-
-        taskDao.add(task1);
-        taskDao.add(task2);
-        taskDao.add(task3);
-
-        System.out.println(taskDao.getById(0));
-        System.out.println(taskDao.getById(1));
-        System.out.println(taskDao.getById(2));
-
-        System.out.println(taskDao.getByName("task1"));
-        System.out.println(taskDao.getByName("task2"));
-        System.out.println(taskDao.getByName("task3"));
-
-        System.out.println(taskDao.getAllByProject(1));
-
-
-//        System.out.println(taskImpl.getByName("task1"));
-
-        taskDao.removeById(0);
-        taskDao.removeById(1);
-        taskDao.removeById(2);
-
-    }
 }

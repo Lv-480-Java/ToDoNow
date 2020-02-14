@@ -1,10 +1,8 @@
 package andriypyzh.servlets.actions.edit;
 
 import andriypyzh.entity.Project;
-import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
 import andriypyzh.services.ProjectService;
-import andriypyzh.services.TaskService;
 import andriypyzh.services.UserService;
 import org.apache.log4j.Logger;
 
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-
 
 @WebServlet("/EditAssignments")
 public class EditAssignments extends HttpServlet {
@@ -33,20 +30,20 @@ public class EditAssignments extends HttpServlet {
         String section = (String) session.getAttribute("section");
         User user = (User) session.getAttribute("user");
         Project project = projectService.getUsersProject(user, section);
-        String action = (String) request.getParameter("action");
-        String username = (String) request.getParameter("username");
+        String action = request.getParameter("action");
+        String username = request.getParameter("username");
         User newUser = userService.getByUsername(username);
 
         if (action.equals("add")) {
             projectService.assignUserToProject(newUser, project);
         } else if (action.equals("remove")) {
-            projectService.unassignUserToProject(newUser,project);
-        }else {
+            projectService.unassignUserToProject(newUser, project);
+        } else {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + section);
             requestDispatcher.forward(request, response);
             return;
         }
-        doGet(request,response);
+        doGet(request, response);
 
     }
 

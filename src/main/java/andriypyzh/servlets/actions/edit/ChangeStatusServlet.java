@@ -15,19 +15,16 @@ import java.io.IOException;
 
 @WebServlet("/ChangeStatus")
 public class ChangeStatusServlet extends HttpServlet {
-    Logger logger = Logger.getLogger(ChangeStatusServlet.class);
-
     public static final String CREATED = "created";
     public static final String IN_PROGRESS = "in progress";
     public static final String COMPLETED = "completed";
-
-
+    Logger logger = Logger.getLogger(ChangeStatusServlet.class);
     TaskService taskService = new TaskService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int id = Integer.valueOf(request.getParameter("task"));
+        int id = Integer.parseInt(request.getParameter("task"));
         Task task = taskService.getByID(id);
 
         if (task.getStatus().equals("created")) {
@@ -75,5 +72,4 @@ public class ChangeStatusServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + section);
         requestDispatcher.forward(request, response);
     }
-
 }

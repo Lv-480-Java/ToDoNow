@@ -14,7 +14,6 @@ public class Task {
     private String description;
     private String status;
 
-
     public Task() {
     }
 
@@ -149,6 +148,4 @@ public class Task {
     public void setStatus(String status) {
         this.status = status;
     }
-
-
 }

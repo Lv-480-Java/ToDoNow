@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 
-
 public class LogInService {
     private static Logger logger = Logger.getLogger(LogInService.class.getName());
 
@@ -33,6 +32,5 @@ public class LogInService {
             logger.info("No such user");
             throw new IllegalArgumentException("No such user");
         }
-
     }
 }

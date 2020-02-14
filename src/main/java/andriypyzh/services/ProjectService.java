@@ -8,16 +8,10 @@ import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
 import org.apache.log4j.Logger;
 
-import javax.persistence.PostLoad;
-import javax.persistence.criteria.Predicate;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
 
 public class ProjectService {
     Logger logger = Logger.getLogger(ProjectService.class);
@@ -101,17 +95,17 @@ public class ProjectService {
         return projectDao.getByName(projectName);
     }
 
-    public void removeByName(String projectName,User user) {
+    public void removeByName(String projectName, User user) {
         Project project = getByName(projectName);
-        projectDao.unassignUser(project,user);
+        projectDao.unassignUser(project, user);
         projectDao.removeById(project.getId());
     }
 
-    public List<String> getAssignedUsers(Project project){
+    public List<String> getAssignedUsers(Project project) {
         return projectDao.getAllAssignedUsers(project);
     }
 
-    public List<String> getNotAssignedUsers(Project project){
+    public List<String> getNotAssignedUsers(Project project) {
         List<String> assignedUsernames = getAssignedUsers(project);
         List<String> usernames = userDao.getAll().stream()
                 .filter(user -> !assignedUsernames.contains(user.getUsername()))
@@ -120,10 +114,11 @@ public class ProjectService {
         return usernames;
     }
 
-    public void assignUserToProject(User user,Project project){
-        projectDao.assignUser(project,user);
+    public void assignUserToProject(User user, Project project) {
+        projectDao.assignUser(project, user);
     }
-    public void unassignUserToProject(User user,Project project){
-        projectDao.unassignUser(project,user);
+
+    public void unassignUserToProject(User user, Project project) {
+        projectDao.unassignUser(project, user);
     }
 }

@@ -34,7 +34,6 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -61,8 +60,6 @@ public class HomeServlet extends HttpServlet {
             logger.error(e);
         }
     }
-
-
 }
 
 

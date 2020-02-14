@@ -8,16 +8,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class UserDao extends GenericDao<User> {
-    Logger logger = Logger.getLogger(UserDao.class.getName());
-
     private static final String ADD = "INSERT INTO Users(Username, Password) VALUES (?,?);";
     private static final String GET_BY_ID = "SELECT ID,Username,Password FROM Users WHERE ID = ?;";
     private static final String GET_BY_NAME = "SELECT ID,Username,Password FROM Users WHERE Username = ?;";
     private static final String GET_ALL = "SELECT ID,Username,Password FROM Users;";
     private static final String UPDATE = "UPDATE Users SET Username = ?, Password = ? WHERE ID = ?;";
     private static final String REMOVE_BY_ID = "DELETE FROM Users WHERE ID = ?;";
+    Logger logger = Logger.getLogger(UserDao.class.getName());
 
     @Override
     public void add(User user) {
@@ -32,7 +30,7 @@ public class UserDao extends GenericDao<User> {
 
             statement.execute();
         } catch (SQLException e) {
-            logger.error("User Insertion Error",e);
+            logger.error("User Insertion Error", e);
         }
     }
 
@@ -57,7 +55,7 @@ public class UserDao extends GenericDao<User> {
             }
 
         } catch (SQLException e) {
-            logger.error("User Get By ID Error",e);
+            logger.error("User Get By ID Error", e);
         }
         return newUser;
     }
@@ -85,7 +83,7 @@ public class UserDao extends GenericDao<User> {
             }
 
         } catch (SQLException e) {
-            logger.error("User Get By Name Error",e);
+            logger.error("User Get By Name Error", e);
         }
         return newUser;
     }
@@ -111,7 +109,7 @@ public class UserDao extends GenericDao<User> {
                 users.add(user);
             }
         } catch (SQLException e) {
-            logger.error("User Get All",e);
+            logger.error("User Get All", e);
         }
         return users;
     }
@@ -131,7 +129,7 @@ public class UserDao extends GenericDao<User> {
             statement.executeUpdate();
 
         } catch (SQLException e) {
-            logger.error("User Updating Error",e);
+            logger.error("User Updating Error", e);
         }
     }
 
@@ -146,37 +144,8 @@ public class UserDao extends GenericDao<User> {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            logger.error("User Removing Error",e);
+            logger.error("User Removing Error", e);
         }
-    }
-
-    public static void main(String[] args) {
-        UserDao userService = new UserDao();
-
-
-        User user1 = new User(1, "Ilon Mask", "1234");
-        User user2 = new User(2, "Jeff Besos", "0000");
-        User user3 = new User(3, "Bill Gates", "1111");
-
-        userService.add(user1);
-        userService.add(user2);
-        userService.add(user3);
-
-
-        System.out.println(userService.getById(2));
-
-        System.out.println(userService.getByName("Bill Gates"));
-
-        userService.update(new User(3, "Bill Gates", "3333"));
-
-
-        for (User u : userService.getAll()) {
-            System.out.println(u);
-        }
-        userService.removeById(1);
-        userService.removeById(2);
-        userService.removeById(3);
-
     }
 }
 

@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-
 @WebServlet("/LoginServlet")
 public class LogInServlet extends HttpServlet {
     Logger logger = Logger.getLogger(RegisterServlet.class.getName());
@@ -42,7 +41,5 @@ public class LogInServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("authentication.jsp");
             requestDispatcher.forward(request, response);
         }
-
     }
-
 }

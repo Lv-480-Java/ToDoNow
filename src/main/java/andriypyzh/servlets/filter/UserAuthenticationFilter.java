@@ -16,13 +16,11 @@ public class UserAuthenticationFilter implements Filter {
 
     private static final Set<String> ALLOWED_PATHS =
             Collections.unmodifiableSet(new HashSet<>(
-            Arrays.asList("", "/", "/authentication.jsp", "/registered.jsp",
-                        "/RegisterServlet","/LoginServlet","/LogOutServlet")));
+                    Arrays.asList("", "/", "/authentication.jsp", "/registered.jsp",
+                            "/RegisterServlet", "/LoginServlet", "/LogOutServlet")));
 
     @Override
-    public void init(FilterConfig config) throws ServletException {
-        // If you have any <init-param> in web.xml, then you could getByName them
-        // here by config.getInitParameter("name") and assign it as field.
+    public void init(FilterConfig config) {
     }
 
     @Override
@@ -34,8 +32,8 @@ public class UserAuthenticationFilter implements Filter {
         HttpSession session = req.getSession(false);
 
         String path = req.getRequestURI()
-                        .substring(req.getContextPath().length())
-                        .replaceAll("[/]+$", "");
+                .substring(req.getContextPath().length())
+                .replaceAll("[/]+$", "");
 
         boolean loggedIn = (session != null && session.getAttribute("user") != null);
         boolean allowedPath = ALLOWED_PATHS.contains(path);
@@ -43,14 +41,14 @@ public class UserAuthenticationFilter implements Filter {
         if (loggedIn || allowedPath) {
             chain.doFilter(servletRequest, servletResponse);
         } else {
-            resp.sendRedirect("authentication.jsp");
+            servletRequest.setAttribute("error", "Please Log In");
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("authentication.jsp");
+            requestDispatcher.forward(servletRequest, servletResponse);
         }
     }
 
     @Override
     public void destroy() {
-        // If you have assigned any expensive resources as field of
-        // this Filter class, then you could clean/close them here.
     }
-
 }

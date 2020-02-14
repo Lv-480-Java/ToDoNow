@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 
-
 public class LogOutService {
     private static Logger logger = Logger.getLogger(LogOutService.class.getName());
 

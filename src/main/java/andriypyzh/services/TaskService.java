@@ -7,8 +7,8 @@ import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskService {
@@ -18,7 +18,7 @@ public class TaskService {
     ProjectDao projectDao = new ProjectDao();
 
 
-    public Task getByID(int id){
+    public Task getByID(int id) {
         return taskDao.getById(id);
     }
 
@@ -67,23 +67,12 @@ public class TaskService {
         return new ArrayList<Task>();
     }
 
-    public List<Task> displayTasksByProject(Project project) throws Exception {
-
-        try {
-            List<Task> projects = taskDao.getAllByProject(project.getId());
-        } catch (Exception e) {
-            logger.error("Cannot display tasks", e);
-        }
-
-        return new ArrayList<Task>();
-    }
-
-    public void deleteTask(int taskId){
+    public void deleteTask(int taskId) {
         taskDao.removeById(taskId);
     }
 
 
-    public Task getByName(String taskName){
+    public Task getByName(String taskName) {
         return taskDao.getByName(taskName);
     }
 }

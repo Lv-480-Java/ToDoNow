@@ -8,11 +8,7 @@
 </head>
 <body>
 <h4 align="center">Successfully registered <%out.print(request.getAttribute("user"));%></h4>
-<h3 align="center" href="/authentication.jsp">OK</h3>
-
-
-<%--<c:out value="${requestScope.user}">m</c:out>--%>
-
+<div align="center"><a href="/authentication.jsp">Go Back</a></div>
 
 </body>
 </html>

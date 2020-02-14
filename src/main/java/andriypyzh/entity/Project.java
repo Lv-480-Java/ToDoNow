@@ -13,7 +13,9 @@ public class Project {
     private String status;
     private String type;
 
-    public Project(){}
+    public Project() {
+    }
+
     public Project(String name, String creatorId, Date creationDate, Date expirationDate,
                    String description, String status, String type) {
         this.name = name;

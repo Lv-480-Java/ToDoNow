@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
 @WebServlet("/EditTask")
 public class EditTaskServlet extends HttpServlet {
     Logger logger = Logger.getLogger(EditTaskServlet.class.getName());
@@ -24,14 +23,14 @@ public class EditTaskServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
-        int taskId=0;
+        int taskId = 0;
         try {
             taskId = (int) session.getAttribute("edittask");
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
 
         }
 
-        String taskName = (String) request.getParameter("Name");
+        String taskName = request.getParameter("Name");
         int priority = Integer.parseInt(request.getParameter("Priority"));
         java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
         String description = request.getParameter("Description");
@@ -58,10 +57,7 @@ public class EditTaskServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession(false);
-        String section = (String) session.getAttribute("section");
-
         int taskId = Integer.parseInt(request.getParameter("task"));
 
         TaskService taskService = new TaskService();
@@ -74,12 +70,10 @@ public class EditTaskServlet extends HttpServlet {
         String deadline = task.getExpirationDate().toString();
         String description = task.getDescription();
 
-
         request.setAttribute("name", name);
         request.setAttribute("priority", priority);
         request.setAttribute("deadline", deadline);
         request.setAttribute("description", description);
-
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/edittask.jsp");
         requestDispatcher.forward(request, response);

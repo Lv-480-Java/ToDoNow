@@ -32,8 +32,8 @@
             out.println("<td>" + task.getCreationDate() + "</td>");
             out.println("<td>" + task.getExpirationDate() + "</td>");
             out.println("<td>" + task.getDescription() + "</td>");
-            out.println("<td><a href=/ChangeStatus?task="+ task.getId() +">" + task.getStatus() + "</a></td>");
-            out.println("<td><a href=/EditTask?task=" + task.getId() + "> edit </a> </td>");
+            out.println("<td><a href=/todonow/ChangeStatus?task="+ task.getId() +">" + task.getStatus() + "</a></td>");
+            out.println("<td><a href=/todonow/EditTask?task=" + task.getId() + "> edit </a> </td>");
             out.print("</tr>");
         }
     %>

@@ -7,7 +7,7 @@
 
 <div align="center">
     <h1>Edit Project</h1>
-    <form action="/EditProject" method="post">
+    <form action="/todonow/EditProject" method="post">
         <table style="with: 80%">
             <tr>
                 <td>Project Name</td>
@@ -28,8 +28,8 @@
         </table>
         <input type="submit" value="Edit"/>
 
-        <a href="/home"> Cancel </a>
-        <a href="/DeleteProject"> Delete </a>
+        <a href="/todonow/home"> Cancel </a>
+        <a href="/todonow/DeleteProject"> Delete </a>
 
     </form>
 </div>

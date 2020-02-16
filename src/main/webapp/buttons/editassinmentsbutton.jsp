@@ -5,7 +5,7 @@
 </head>
 <body>
 <div align="center">
-    <form method="get" action="/EditAssignments">
+    <form method="get" action="/todonow/EditAssignments">
         <input type="submit" value="Edit Assignments">
     </form>
 </div>

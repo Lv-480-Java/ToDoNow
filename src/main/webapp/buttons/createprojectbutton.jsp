@@ -7,7 +7,7 @@
 <body>
 
 <div align="center">
-    <form method="post" action="../forms/createproject.jsp">
+    <form method="post" action="/todonow/forms/createproject.jsp">
         <input type="submit" value="Add Project">
     </form>
 </div>

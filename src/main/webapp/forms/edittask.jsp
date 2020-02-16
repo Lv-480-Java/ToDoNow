@@ -7,7 +7,7 @@
 
 <div align="center">
     <h1>Edit Task</h1>
-    <form action="/EditTask" method="post">
+    <form action="/todonow/EditTask" method="post">
         <table style="with: 80%">
             <tr>
                 <td>Task Name</td>
@@ -28,8 +28,8 @@
         </table>
         <input type="submit" value="Edit"/>
 
-        <a href="/home"> Cancel </a>
-        <a href="/DeleteTask"> Delete </a>
+        <a href="/todonow/home"> Cancel </a>
+        <a href="/todonow/DeleteTask"> Delete </a>
 
 
     </form>

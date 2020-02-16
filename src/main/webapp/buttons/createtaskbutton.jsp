@@ -6,7 +6,7 @@
 <body>
 
 <div align="center">
-    <form method="post" action="../forms/createtask.jsp">
+    <form method="post" action="/todonow/forms/createtask.jsp">
         <input type="submit" value="Add Task">
     </form>
 </div>

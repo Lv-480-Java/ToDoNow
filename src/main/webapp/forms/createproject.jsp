@@ -7,7 +7,7 @@
 
 <div align="center">
     <h1>Add Project</h1>
-    <form action="/CreateProject" method="post">
+    <form action="/todonow/CreateProject" method="post">
         <table style="with: 80%">
             <tr>
                 <td>Project Name</td>
@@ -28,7 +28,7 @@
             </tr>
         </table>
         <input type="submit" value="Create"/>
-        <a href="/home"> Cancel </a>
+        <a href="/todonow/home"> Cancel </a>
 
     </form>
 </div>

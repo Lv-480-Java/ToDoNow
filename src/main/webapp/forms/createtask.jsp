@@ -6,7 +6,7 @@
 <body>
 <div align="center">
     <h1>Add Task</h1>
-    <form action="/CreateTask" method="post">
+    <form action="/todonow/CreateTask" method="post">
         <table style="with: 80%">
             <tr>
                 <td>Task Name</td>
@@ -28,7 +28,7 @@
         </table>
         <input type="submit" value="Create"/>
 
-        <a href="/home"> Cancel </a>
+        <a href="/todonow/home"> Cancel </a>
 
     </form>
 </div>

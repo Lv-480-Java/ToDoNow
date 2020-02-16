@@ -6,7 +6,7 @@
 <body>
 
 <div align="center">
-    <form method="get" action="/EditProject">
+    <form method="get" action="/todonow/EditProject">
         <input type="submit" value="Edit Project">
     </form>
 </div>

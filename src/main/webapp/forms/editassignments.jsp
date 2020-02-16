@@ -44,25 +44,27 @@
     <button onclick="removeUser()">Unassign</button>
 </div>
 
-<div align="center"><a href="/home" > Cancel </a></div>
+<div align="center"><a href="/todonow/home" > Cancel </a></div>
 
 <script>
+
     function addUser() {
         var x = document.getElementById("SelectUnassigned");
         // x.remove(x.selectedIndex);
 
         const Http = new XMLHttpRequest();
-        const url="/EditAssignments?action=add&username=" + x.options[x.selectedIndex].value;
+        const url="/todonow/EditAssignments?action=add&username=" + x.options[x.selectedIndex].value;
         Http.open("POST", url);
         Http.send();
     }
+
 
     function removeUser() {
         var x = document.getElementById("SelectAssigned");
         // x.remove(x.selectedIndex);
 
         const Http = new XMLHttpRequest();
-        const url="/EditAssignments?action=remove&username=" + x.options[x.selectedIndex].value;
+        const url="/todonow/EditAssignments?action=remove&username=" + x.options[x.selectedIndex].value;
         Http.open("POST", url);
         Http.send();
     }

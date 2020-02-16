@@ -8,10 +8,10 @@
 <body>
 <div class="menu">
     <ul>
-        <li><a href="/home">Tasks</a></li>
-        <li><a href="/CategoryStatus?status=created">Created</a></li>
-        <li><a href="/CategoryStatus?status=in+progress">In Progress</a></li>
-        <li><a href="/CategoryStatus?status=completed">Completed</a></li>
+        <li><a href="/todonow/home">Tasks</a></li>
+        <li><a href="/todonow/CategoryStatus?status=created">Created</a></li>
+        <li><a href="/todonow/CategoryStatus?status=in+progress">In Progress</a></li>
+        <li><a href="/todonow/CategoryStatus?status=completed">Completed</a></li>
 
         <%
             List<Project> projects = (List<Project>) session.getAttribute("projects");
@@ -20,7 +20,7 @@
             }
             for (Project project : projects) {
                 if (!project.getType().equals("default")) {
-                    out.print("<li><a href =/Projects?project=" + project.getName().replace(" ", "+") + ">");
+                    out.print("<li><a href =/todonow/Projects?project=" + project.getName().replace(" ", "+") + ">");
                     out.println(project.getName());
                     out.print("</a></li>");
                 }

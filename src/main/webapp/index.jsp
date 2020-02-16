@@ -1,18 +1,36 @@
-<html>
+<html lang="en">
 <head>
-    <link href="/authentication/dashboard.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+
+    <title>ToDoNow</title>
+
+    <link rel="preload" href="tabler-1568447964.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="tabler-1568447964.min.css">
+    </noscript>
 </head>
-<body>
-<div align="center">
-    <h1>ToDoNow</h1>
-    <h3>Tasks & Projects</h3>
-<%--    <a href="authentication.jsp">"Get Started"</a>--%>
-    <a href="authentication/register.jsp" type="submit" class="btn btn-primary btn-block">Get Started</a>
+<body bgcolor="#FAFAFA">
+
+
+<div class="page">
+
+    <main class="main">
+
+        <section class="section bg-light">
+            <div class="container text-center">
+                <h1 class="section-title mb-2">ToDoNow</h1>
+                <h2 class="section-title mb-2">Tasks & Projects</h2>
+                <p class="section-description">
+                    Start your adventure with Tabler and make your dashboard great again.</p>
+                <div class="mt-4">
+                    <a href="authentication/register.jsp" class="btn btn-green" target="_blank">Sign up</a>
+                    <a href="authentication/login.jsp" class="btn btn-secondary ml-2">Log in</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
 </div>
-
-<%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
-<%--      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--%>
-
 
 </body>
 </html>

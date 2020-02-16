@@ -43,7 +43,7 @@
                         </div>
                     </form>
                     <div class="text-center text-muted">
-                        Don't have account yet? <a href="register.jsp">Sign up</a>
+                        Don't have account yet? <a href="/todonow/authentication/register.jsp">Sign up</a>
                     </div>
                 </div>
             </div>

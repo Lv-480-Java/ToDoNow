@@ -18,7 +18,7 @@
 </div>
 
 <div align="right">
-    <form method="get" action="/LogOutServlet">
+    <form method="get" action="/todonow/LogOutServlet">
         <input type="submit" value="Log Out">
     </form>
 </div>

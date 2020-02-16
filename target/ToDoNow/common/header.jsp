@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: andriypyzh
-  Date: 07.02.2020
-  Time: 22:25
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="andriypyzh.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,12 +13,12 @@
 
 <div>
     <h2>
-        <% out.print(request.getSession().getAttribute("user")); %>
+        <% out.print(((User)request.getSession().getAttribute("user")).getUsername()); %>
     </h2>
 </div>
 
 <div align="right">
-    <form method="get" action="/LogOutServlet">
+    <form method="get" action="/todonow/LogOutServlet">
         <input type="submit" value="Log Out">
     </form>
 </div>

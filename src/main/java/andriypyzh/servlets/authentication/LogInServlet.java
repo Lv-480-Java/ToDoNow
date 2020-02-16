@@ -38,7 +38,7 @@ public class LogInServlet extends HttpServlet {
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", e.getMessage());
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("authentication.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("authentication/login.jsp");
             requestDispatcher.forward(request, response);
         }
     }

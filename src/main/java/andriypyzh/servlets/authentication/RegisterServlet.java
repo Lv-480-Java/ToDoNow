@@ -32,16 +32,19 @@ public class RegisterServlet extends HttpServlet {
         try {
             registerService.registerUser(username, password, confirmPassword);
 
+            request.setAttribute("error", "Successfully registered");
+
             request.setAttribute("user", username);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("registered.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/authentication/login.jsp");
             requestDispatcher.forward(request, response);
+//            response.sendRedirect("/todonow/authentication/login.jsp");
 
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", e.getMessage());
             logger.error("Cannot Register", e);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("authentication.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/authentication/register.jsp");
             requestDispatcher.forward(request, response);
         }
 

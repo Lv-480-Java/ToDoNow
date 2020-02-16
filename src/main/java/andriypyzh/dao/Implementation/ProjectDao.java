@@ -1,8 +1,8 @@
 package andriypyzh.dao.Implementation;
 
+import andriypyzh.dao.ConnectionFactory;
 import andriypyzh.entity.Project;
 import andriypyzh.entity.User;
-import andriypyzh.dao.ConnectionFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -28,7 +28,7 @@ public class ProjectDao extends GenericDao<Project> {
             " Projects.Description, Projects.Status, Projects.Type " +
             " FROM Projects INNER JOIN Users_Projects_Assigments " +
             " ON Users_Projects_Assigments.ProjectID = Projects.ID" +
-            " INNER JOIN Users ON Users_Projects_Assigments.UserID = Users.ID" +
+            " INNER JOIN Users ON Users_Projects_Assigments.UserID = Users.ID " +
             " WHERE Users.Username = ?;";
 
     private static final String GET_ASSIGNED_USERS = "SELECT Users.Username" +

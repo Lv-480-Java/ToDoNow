@@ -57,7 +57,7 @@ public class EditProjectServlet extends HttpServlet {
             request.setAttribute("error", e.getMessage());
             logger.error("illegal data", e);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/createproject.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/editproject.jsp");
             requestDispatcher.forward(request, response);
         }
 

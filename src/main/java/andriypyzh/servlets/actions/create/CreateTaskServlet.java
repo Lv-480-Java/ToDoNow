@@ -58,6 +58,7 @@ public class CreateTaskServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", e.getMessage());
+            logger.error(e.getMessage());
             logger.error(e);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/createtask.jsp");

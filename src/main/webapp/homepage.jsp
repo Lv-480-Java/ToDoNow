@@ -4,17 +4,31 @@
 <head>
     <title>Home Page</title>
 </head>
+
 <body>
 
 <jsp:include page="common/header.jsp"></jsp:include>
 
-<jsp:include page="elements/menu.jsp"></jsp:include>
+<div class="mypage">
+    <div class="container">
+        <h2 align="center"><%out.print(session.getAttribute("section"));%></h2>
 
-<p align="center"><%out.print(session.getAttribute("section"));%></p>
+        <div class="row">
+            <div class="col-3">
 
-<jsp:include page="buttons/createtaskbutton.jsp"></jsp:include>
-<jsp:include page="buttons/createprojectbutton.jsp"></jsp:include>
-<jsp:include page="elements/tasks.jsp"></jsp:include>
+                <jsp:include page="/elements/menu.jsp"></jsp:include>
+                <jsp:include page="/buttons/createtaskbutton.jsp"></jsp:include>
+                <jsp:include page="/buttons/createprojectbutton.jsp"></jsp:include>
 
+            </div>
+
+            <div class="col-9">
+                <jsp:include page="/elements/tasks.jsp"></jsp:include>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
+
 </html>

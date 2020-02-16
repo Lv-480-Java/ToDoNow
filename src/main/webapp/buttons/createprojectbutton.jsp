@@ -6,11 +6,12 @@
 </head>
 <body>
 
-<div align="center">
-    <form method="post" action="/todonow/forms/createproject.jsp">
-        <input type="submit" value="Add Project">
-    </form>
+<div class="mt-5">
+    <button class="btn btn-primary btn-block" onclick="window.location.href = '/todonow/forms/createproject.jsp';" >
+        Add Project
+    </button>
 </div>
+
 
 </body>
 </html>

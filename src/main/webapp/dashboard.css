@@ -11707,21 +11707,24 @@ img {
   -ms-flex-pack: center;
   justify-content: center;
   /*min-height: 100%;*/
-  height: 100px;
+  height: 70px;
 }
 
 .mypage {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
-  flex-direction: column;
+  flex-direction: column-reverse;
   -ms-flex-pack: center;
   justify-content: center;
-  /*min-height: 100%;*/
-  /*height: 100px;*/
-  width: 300px;
+  margin-top: 30px;
 
 }
+
+.mylistbox{
+  width: 100%;
+}
+
 
 body.fixed-header .page {
   padding-top: 4.5rem;
@@ -11741,6 +11744,10 @@ body.fixed-header .page {
   .page-content {
     margin: 1.5rem 0;
   }
+}
+
+.projects_table{
+  width: 1000px;
 }
 
 .page-header {

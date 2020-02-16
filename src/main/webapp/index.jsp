@@ -9,8 +9,8 @@
         <link rel="stylesheet" href="tabler-1568447964.min.css">
     </noscript>
 </head>
-<body bgcolor="#FAFAFA">
 
+<body bgcolor="#FAFAFA">
 
 <div class="page">
 

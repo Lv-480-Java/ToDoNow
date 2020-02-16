@@ -4,10 +4,13 @@
     <title>Assignments</title>
 </head>
 <body>
-<div align="center">
-    <form method="get" action="/todonow/EditAssignments">
-        <input type="submit" value="Edit Assignments">
-    </form>
+
+
+<div class="mt-5">
+    <button class="btn btn-primary btn-block" onclick="window.location.href = '/todonow/EditAssignments';" >
+        Edit Assignments
+    </button>
 </div>
+
 </body>
 </html>

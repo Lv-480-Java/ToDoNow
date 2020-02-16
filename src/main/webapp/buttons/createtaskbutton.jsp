@@ -2,15 +2,15 @@
 <html>
 <head>
     <title>Create Task Button</title>
+
 </head>
 <body>
 
-<div align="center">
-    <form method="post" action="/todonow/forms/createtask.jsp">
-        <input type="submit" value="Add Task">
-    </form>
+<div class="mt-5">
+    <button class="btn btn-primary btn-block" onclick="window.location.href = '/todonow/forms/createtask.jsp';" >
+        Add Task
+    </button>
 </div>
-
 
 </body>
 </html>

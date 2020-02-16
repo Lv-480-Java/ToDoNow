@@ -1,38 +1,62 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="en">
 <head>
-    <title>Create Project Page</title>
+    <title>New Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+    <link href="<%=request.getContextPath()%>/authentication/dashboard.css" rel="stylesheet"/>
 </head>
-<body>
+<body class="antialiased">
 
-<div align="center">
-    <h1>Add Project</h1>
-    <form action="/todonow/CreateProject" method="post">
-        <table style="with: 80%">
-            <tr>
-                <td>Project Name</td>
-                <td><input type="text" name="Name"/></td>
-            </tr>
-            <tr>
-                <td>Deadline</td>
-                <td><input type="date" id="start" name="Deadline"
-                            value=<%= new java.sql.Date(System.currentTimeMillis()) %>></td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td><input type="text" name="Type"/></td>
-            </tr>
-            <tr>
-                <td>Description</td>
-                <td><input type="text" name="Description"/></td>
-            </tr>
-        </table>
-        <input type="submit" value="Create"/>
-        <a href="/todonow/home"> Cancel </a>
+<div class="page">
+    <div class="page-single">
+        <div class="container">
+            <div class="row">
+                <div class="col col-login mx-auto">
+                    <form class="card" action="/todonow/CreateProject" method="post">
+                        <div class="card-body p-6">
+                            <div align="center">
+                                <h2>New Project</h2>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Project Name</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Enter project name" name="Name">
+                            </div>
 
-    </form>
+                            <div class="form-group">
+                                <label class="form-label">Deadline</label>
+                                <input type="date" class="form-control"
+                                       value="<%= new java.sql.Date(System.currentTimeMillis()) %>"
+                                       placeholder="Enter deadline" name="Deadline">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Type</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Enter type" name="Type">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" rows="6"
+                                          placeholder="Some description..." name="Description"></textarea>
+                            </div>
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary btn-block">Create</button>
+                                <a href="/todonow/Projects?project=<%=session.getAttribute("section")%>"
+                                   class="btn btn-secondary ml-2 btn-block">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<jsp:include page="../elements/alertBox.jsp"></jsp:include>
+<jsp:include page="/elements/alertBox.jsp"></jsp:include>
+
 </body>
 </html>
+

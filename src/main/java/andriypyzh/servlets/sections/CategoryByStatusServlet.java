@@ -34,6 +34,7 @@ public class CategoryByStatusServlet extends HttpServlet {
                     .collect(Collectors.toList());
 
             request.setAttribute("tasks", tasks);
+            request.setAttribute("status",status);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("status.jsp");
             requestDispatcher.forward(request, response);

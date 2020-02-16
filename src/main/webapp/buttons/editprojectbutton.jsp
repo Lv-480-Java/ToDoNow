@@ -5,10 +5,10 @@
 </head>
 <body>
 
-<div align="center">
-    <form method="get" action="/todonow/EditProject">
-        <input type="submit" value="Edit Project">
-    </form>
+<div class="mt-5">
+    <button class="btn btn-primary btn-block" onclick="window.location.href = '/todonow/EditProject';" >
+        Edit Project
+    </button>
 </div>
 
 </body>

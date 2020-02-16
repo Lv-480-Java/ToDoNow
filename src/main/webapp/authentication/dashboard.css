@@ -1045,6 +1045,7 @@ pre code {
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
+    align-content: center;
   }
   .col-md-7 {
     -ms-flex: 0 0 58.33333333%;
@@ -1379,6 +1380,9 @@ pre code {
     -ms-flex: 0 0 33.33333333%;
     flex: 0 0 33.33333333%;
     max-width: 33.33333333%;
+    align-content: center;
+align-items: center;
+    align-self: center;
   }
   .col-xl-5 {
     -ms-flex: 0 0 41.66666667%;
@@ -2452,6 +2456,12 @@ fieldset:disabled .dataTables_wrapper .dataTables_paginate a.paginate_button,
   border-color: #467fcf;
 }
 
+.btn-my{
+  color: #fff;
+  background-color: #868e96;
+  border-color: #868e96;
+}
+
 .btn-primary:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   color: #fff;
   background-color: #316cbe;
@@ -3016,6 +3026,16 @@ fieldset:disabled .dataTables_wrapper .dataTables_paginate a.paginate_button,
 .btn-block {
   display: block;
   width: 100%;
+}
+
+
+.btn-block1 {
+  display: block;
+  width: 40%;
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  alignment: center;
 }
 
 .btn-block + .btn-block {
@@ -7073,6 +7093,15 @@ button.bg-dark:focus {
   flex-direction: row !important;
 }
 
+
+.assign-con{
+  margin-bottom: 50px;
+}
+.page-title1{
+  vertical-align: middle;
+  margin-top: 100px;
+}
+
 .flex-column {
   -ms-flex-direction: column !important;
   flex-direction: column !important;
@@ -7106,6 +7135,10 @@ button.bg-dark:focus {
 .flex-fill {
   -ms-flex: 1 1 auto !important;
   flex: 1 1 auto !important;
+}
+
+.myrow{
+  width: 300px;
 }
 
 .flex-grow-0 {
@@ -8169,7 +8202,7 @@ button.bg-dark:focus {
 
 .ml-2,
 .mx-2 {
-  margin-left: 0.5rem !important;
+  /*margin-left: 1px !important;*/
 }
 
 .m-3 {
@@ -11589,6 +11622,10 @@ img {
   }
 }
 
+.mycon{
+  margin-top: 200px;
+}
+
 .row-cards > .col,
 .row-cards > [class*='col-'] {
   display: -ms-flexbox;
@@ -11704,6 +11741,22 @@ img {
   min-height: 100%;
 }
 
+.mylistbox{
+  width: 100%;
+  min-width: 90%;
+}
+
+
+.mypage {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  min-height: 50%;
+}
+
 body.fixed-header .page {
   padding-top: 4.5rem;
 }
@@ -11732,6 +11785,7 @@ body.fixed-header .page {
   margin: 1.5rem 0 1.5rem;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+
 }
 
 .page-title {

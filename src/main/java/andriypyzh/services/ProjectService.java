@@ -20,7 +20,6 @@ public class ProjectService {
     private TaskDao taskDao = new TaskDao();
     private UserDao userDao = new UserDao();
 
-
     public void updateProject(int id, String projectName, Date deadline, String description, String type) {
         Project newProject = projectDao.getById(id);
 

@@ -17,7 +17,8 @@ public class Task {
     public Task() {
     }
 
-    public Task(String name, String owner, int projectId, int priority, Date creationDate, Date expirationDate, String description, String status) {
+    public Task(String name, String owner, int projectId, int priority, Date creationDate,
+                Date expirationDate, String description, String status) {
         this.name = name;
         this.owner = owner;
         this.projectId = projectId;
@@ -29,7 +30,8 @@ public class Task {
     }
 
 
-    public Task(int id, String name, String owner, int projectId, int priority, Date creationDate, Date expirationDate, String description, String status) {
+    public Task(int id, String name, String owner, int projectId, int priority, Date creationDate,
+                Date expirationDate, String description, String status) {
         this.id = id;
         this.name = name;
         this.owner = owner;
@@ -59,7 +61,8 @@ public class Task {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getOwner(), getProjectId(), getPriority(), getCreationDate(), getExpirationDate(), getDescription(), getStatus());
+        return Objects.hash(getId(), getName(), getOwner(), getProjectId(), getPriority(),
+                getCreationDate(), getExpirationDate(), getDescription(), getStatus());
     }
 
     @Override

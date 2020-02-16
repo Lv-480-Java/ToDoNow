@@ -15,12 +15,12 @@
 
         <%
             List<Project> projects = (List<Project>) session.getAttribute("projects");
-            if (projects.size()!=1){
+            if (projects.size() != 1) {
                 out.print("<p>Projects:</p>");
             }
             for (Project project : projects) {
                 if (!project.getType().equals("default")) {
-                    out.print("<li><a href =/Projects?project=" + project.getName().replace(" ","+") + ">");
+                    out.print("<li><a href =/Projects?project=" + project.getName().replace(" ", "+") + ">");
                     out.println(project.getName());
                     out.print("</a></li>");
                 }

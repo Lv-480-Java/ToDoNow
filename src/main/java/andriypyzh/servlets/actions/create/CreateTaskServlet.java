@@ -32,8 +32,8 @@ public class CreateTaskServlet extends HttpServlet {
             //
             java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
             String description = request.getParameter("Description");
-            TaskValidator taskValidator = new TaskValidator();
-            taskValidator.validateData(taskName, priority, deadline, description);
+
+            TaskValidator.validateData(taskName, priority, deadline, description);
 
             User user = (User) session.getAttribute("user");
             TaskService taskService = new TaskService();

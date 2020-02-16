@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TaskService {
@@ -52,13 +53,13 @@ public class TaskService {
 
 
     public List<Task> displayTasks(User user) throws Exception {
-
         try {
             List<Project> projects = projectDao.getAllByUser(user);
             for (Project project : projects) {
-                System.out.println(project.getType());
                 if (project.getName().equals("Tasks of " + user.getUsername())) {
-                    return taskDao.getAllByProject(project.getId());
+                    List<Task> tasks = taskDao.getAllByProject(project.getId());
+                    Collections.reverse(tasks);
+                    return tasks;
                 }
             }
         } catch (Exception e) {
@@ -76,12 +77,11 @@ public class TaskService {
         return taskDao.getByName(taskName);
     }
 
-
     public static final String CREATED = "created";
     public static final String IN_PROGRESS = "in progress";
     public static final String COMPLETED = "completed";
 
-    public void changeStatus(Task task){
+    public void changeStatus(Task task) {
         if (task.getStatus().equals(CREATED)) {
             task.setStatus(IN_PROGRESS);
             updateTask(task);

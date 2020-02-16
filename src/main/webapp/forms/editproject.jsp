@@ -11,7 +11,7 @@
         <table style="with: 80%">
             <tr>
                 <td>Project Name</td>
-                <td><input type="text" name="Name" value=<%=request.getAttribute("Name")%>></td>
+                <td><input type="text" name="Name" value="<%=request.getAttribute("Name")%>"></td>
             </tr>
             <tr>
                 <td>Deadline</td>
@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <td>Description</td>
-                <td><input type="text" name="Description" value=<%=request.getAttribute("Description")%>></td>
+                <td><input type="text" name="Description" value="<%=request.getAttribute("Description")%>"></td>
             </tr>
         </table>
         <input type="submit" value="Edit"/>

@@ -6,7 +6,7 @@
 </head>
 <body>
 <div align="center">
-    <h1>Add Task</h1>
+    <h1>Edit Assignments</h1>
 
 </div>
 
@@ -21,7 +21,6 @@
                     out.print("<option>" + username + "</option>");
                 }
             %>
-
         </select>
     </form>
     <br>

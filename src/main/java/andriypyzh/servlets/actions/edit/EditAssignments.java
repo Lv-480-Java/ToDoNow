@@ -74,5 +74,4 @@ public class EditAssignments extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/editassignments.jsp");
         requestDispatcher.forward(request, response);
     }
-
 }

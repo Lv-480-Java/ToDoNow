@@ -21,6 +21,7 @@ andriypyzh/services/validators/IValidator.class
 andriypyzh/services/authentication/RegisterService.class
 andriypyzh/servlets/actions/edit/EditAssignments.class
 andriypyzh/servlets/actions/delete/DeleteProjectServlet.class
+andriypyzh/Main.class
 andriypyzh/dao/ConnectionFactory.class
 andriypyzh/servlets/actions/create/CreateTaskServlet.class
 andriypyzh/servlets/authentication/RegisterServlet.class

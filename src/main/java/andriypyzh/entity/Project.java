@@ -70,7 +70,8 @@ public class Project {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getCreator(), getCreationDate(), getExpirationDate(), getDescription(), getStatus(), getType());
+        return Objects.hash(getId(), getName(), getCreator(), getCreationDate(),
+                getExpirationDate(), getDescription(), getStatus(), getType());
     }
 
     public int getId() {

@@ -11,19 +11,19 @@
         <table style="with: 80%">
             <tr>
                 <td>Task Name</td>
-                <td><input type="text" name="Name" value=<%= request.getAttribute("name")%>></td>
+                <td><input type="text" name="Name" value="<%= request.getAttribute("name")%>"></td>
             </tr>
             <tr>
                 <td>Priority</td>
-                <td><input type="text" name="Priority" value=<%=request.getAttribute("priority")%>></td>
+                <td><input type="text" name="Priority" value=<%= request.getAttribute("priority")%>></td>
             </tr>
             <tr>
                 <td>Deadline</td>
-                <td><input type="date" name="Deadline" value=<%=request.getAttribute("deadline")%>></td>
+                <td><input type="date" name="Deadline" value=<%= request.getAttribute("deadline")%>></td>
             </tr>
             <tr>
                 <td>Description</td>
-                <td><input type="text" name="Description" value=<%=request.getAttribute("description")%>></td>
+                <td><input type="text" name="Description" value="<%= (String)request.getAttribute("description")%>"></td>
             </tr>
         </table>
         <input type="submit" value="Edit"/>

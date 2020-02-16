@@ -30,13 +30,12 @@ public class CreateProjectServlet extends HttpServlet {
             String description = request.getParameter("Description");
             String type = request.getParameter("Type");
 
+            ProjectValidator.validateData(projectName, deadline, type, description);
+
             User user = (User) session.getAttribute("user");
             ProjectService projectService = new ProjectService();
             projectService.createProject(projectName, user,
                     deadline, description, type);
-
-            ProjectValidator projectValidator = new ProjectValidator();
-            projectValidator.validateData(projectName, deadline, type, description);
 
             logger.info("/Projects?project=" + projectName);
             session.setAttribute("section", projectName);

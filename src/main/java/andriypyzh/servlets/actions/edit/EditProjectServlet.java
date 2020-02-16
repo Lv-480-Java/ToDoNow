@@ -30,27 +30,36 @@ public class EditProjectServlet extends HttpServlet {
         String section = (String) session.getAttribute("section");
         User user = (User) session.getAttribute("user");
 
-        String projectName = request.getParameter("Name");
-        java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
-        String description = request.getParameter("Description");
-        String type = request.getParameter("Type");
+        try {
+            String projectName = request.getParameter("Name");
+            java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
+            String description = request.getParameter("Description");
+            String type = request.getParameter("Type");
 
-        Project oldProject = projectService.getUsersProject(user, section);
+            Project oldProject = projectService.getUsersProject(user, section);
 
-        oldProject.setName(projectName);
-        oldProject.setExpirationDate(deadline);
-        oldProject.setDescription(description);
-        oldProject.setType(type);
+            oldProject.setName(projectName);
+            oldProject.setExpirationDate(deadline);
+            oldProject.setDescription(description);
+            oldProject.setType(type);
 
-        projectService.updateProject(oldProject.getId(), projectName, deadline, description, type);
+            projectService.updateProject(oldProject.getId(), projectName, deadline, description, type);
 
-        request.setAttribute("project", oldProject);
+            request.setAttribute("project", oldProject);
 
-        List<Project> projects = projectService.getAllUsersProjects(user);
-        session.setAttribute("projects", projects);
+            List<Project> projects = projectService.getAllUsersProjects(user);
+            session.setAttribute("projects", projects);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + projectName);
-        requestDispatcher.forward(request, response);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + projectName);
+            requestDispatcher.forward(request, response);
+
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("error", e.getMessage());
+            logger.error("illegal data", e);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/createproject.jsp");
+            requestDispatcher.forward(request, response);
+        }
 
     }
 

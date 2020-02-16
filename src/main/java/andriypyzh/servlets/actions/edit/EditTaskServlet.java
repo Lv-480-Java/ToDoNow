@@ -2,6 +2,7 @@ package andriypyzh.servlets.actions.edit;
 
 import andriypyzh.entity.Task;
 import andriypyzh.services.TaskService;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -65,18 +66,34 @@ public class EditTaskServlet extends HttpServlet {
 
         session.setAttribute("edittask", taskId);
 
-        String name = task.getName();
-        int priority = task.getPriority();
-        String deadline = task.getExpirationDate().toString();
-        String description = task.getDescription();
+        try {
+            String name = task.getName();
+            int priority = task.getPriority();
+            String deadline = task.getExpirationDate().toString();
+            String description = task.getDescription();
 
-        request.setAttribute("name", name);
-        request.setAttribute("priority", priority);
-        request.setAttribute("deadline", deadline);
-        request.setAttribute("description", description);
+            request.setAttribute("name", StringEscapeUtils.escapeHtml4(name));
+            request.setAttribute("priority", priority);
+            request.setAttribute("deadline", deadline);
+            request.setAttribute("description", StringEscapeUtils.escapeHtml4(description));
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/edittask.jsp");
-        requestDispatcher.forward(request, response);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/edittask.jsp");
+            requestDispatcher.forward(request, response);
+
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "illegal priority");
+            logger.error(e);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/createtask.jsp");
+            requestDispatcher.forward(request, response);
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("error", e.getMessage());
+            logger.error(e);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/createtask.jsp");
+            requestDispatcher.forward(request, response);
+        }
+
     }
 
 }

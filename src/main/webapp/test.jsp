@@ -1,45 +1,45 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: andriypyzh
-  Date: 14.02.2020
-  Time: 13:58
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
 
-    <title>ToDoNow</title>
+    <title>Homepage</title>
 
-    <link rel="preload" href="tabler-1568447964.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="tabler-1568447964.min.css">
-    </noscript>
-
+    <link href="dashboard.css" rel="stylesheet"/>
 </head>
-<body bgcolor="#FAFAFA">
-
-
+<body class="">
 <div class="page">
+    <div class="flex-fill">
+        <div class="header py-4">
+            <div class="container">
+                <div class="d-flex">
+                    <a class="header-brand" href="./index.html">
+                        <h2 class="section-title mb-2">ToDoNow</h2>
+                    </a>
+                    <div class="d-flex order-lg-2 ml-auto">
 
-    <main class="main">
+                        <div class="nav-item d-none d-md-flex">
+                            <form method="get" action="/todonow/LogOutServlet">
+                                <input class="btn btn-sm btn-outline-primary" target="_blank" type="submit"
+                                       value="Log Out">
+                            </form>
+                        </div>
 
-        <section class="section bg-light">
-            <div class="container text-center">
-                <h1 class="section-title mb-2">ToDoNow</h1>
-                <h2 class="section-title mb-2">Tasks & Projects</h2>
-                <p class="section-description">
-                    Start your adventure with Tabler and make your dashboard great again.</p>
-                <div class="mt-4">
-                    <a href="authentication/register.jsp" class="btn btn-green" target="_blank">Sign up</a>
-                    <a href="authentication/login.jsp"  class="btn btn-secondary ml-2">Log in</a>
+                        <div class="dropdown">
+                            <a class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                                <span class="ml-2 d-none d-lg-block">
+                                   <span class="text-default"><%=request.getSession().getAttribute("user")%></span>
+                                </span>
+                            </a>
+                        </div>
+                        <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
+                           data-target="#headerMenuCollapse">
+                            <span class="header-toggler-icon"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </section>
-
-    </main>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>

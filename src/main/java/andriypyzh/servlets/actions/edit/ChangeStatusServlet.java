@@ -21,7 +21,6 @@ public class ChangeStatusServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         int id = Integer.parseInt(request.getParameter("task"));
         Task task = taskService.getByID(id);
 
@@ -30,29 +29,8 @@ public class ChangeStatusServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         String section = (String) session.getAttribute("section");
 
-        if (section.startsWith("$")) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
-            requestDispatcher.forward(request, response);
-        } else {
-            logger.info("/Projects?project=" + section);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + section);
-            requestDispatcher.forward(request, response);
-        }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = (int) request.getAttribute("task");
-        Task task = taskService.getByID(id);
-
-        taskService.changeStatus(task);
-
-        HttpSession session = request.getSession(false);
-        String section = (String) session.getAttribute("section");
-
+        logger.info("Section " + section);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + section);
         requestDispatcher.forward(request, response);
     }
-
-
 }

@@ -3,6 +3,7 @@ package andriypyzh.servlets.actions.edit;
 import andriypyzh.entity.Project;
 import andriypyzh.entity.User;
 import andriypyzh.services.ProjectService;
+import andriypyzh.services.validators.ProjectValidator;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -35,6 +36,8 @@ public class EditProjectServlet extends HttpServlet {
             java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
             String description = request.getParameter("Description");
             String type = request.getParameter("Type");
+
+            ProjectValidator.validateData(projectName,deadline,description,type);
 
             Project oldProject = projectService.getUsersProject(user, section);
 

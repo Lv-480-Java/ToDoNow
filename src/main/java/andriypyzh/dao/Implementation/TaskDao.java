@@ -1,8 +1,8 @@
 package andriypyzh.dao.Implementation;
 
+import andriypyzh.dao.ConnectionFactory;
 import andriypyzh.entity.Task;
 import andriypyzh.entity.User;
-import andriypyzh.dao.ConnectionFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

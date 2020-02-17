@@ -18,6 +18,10 @@ public class TaskService {
     TaskDao taskDao = new TaskDao();
     ProjectDao projectDao = new ProjectDao();
 
+    public static final String CREATED = "created";
+    public static final String IN_PROGRESS = "in progress";
+    public static final String COMPLETED = "completed";
+
 
     public Task getByID(int id) {
         return taskDao.getById(id);
@@ -77,9 +81,6 @@ public class TaskService {
         return taskDao.getByName(taskName);
     }
 
-    public static final String CREATED = "created";
-    public static final String IN_PROGRESS = "in progress";
-    public static final String COMPLETED = "completed";
 
     public void changeStatus(Task task) {
         if (task.getStatus().equals(CREATED)) {

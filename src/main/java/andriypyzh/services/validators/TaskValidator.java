@@ -9,7 +9,7 @@ public class TaskValidator {
         if (taskName.isEmpty() || description.isEmpty()) {
             throw new IllegalArgumentException("Empty field");
         }
-        if (!taskName.matches("[A-Za-z0-9_ ^#&<>\"~;$^%{}?]+")) {
+        if (!taskName.matches("[A-Za-z0-9_ ^#&.<>\"~;$^%{}?]+")) {
             throw new IllegalArgumentException("Illegal Task Name");
         }
         if (priority < 0) {
@@ -23,5 +23,4 @@ public class TaskValidator {
             throw new IllegalArgumentException("Illegal Date");
         }
     }
-
 }

@@ -2,6 +2,7 @@ package andriypyzh.servlets.actions.edit;
 
 import andriypyzh.entity.Task;
 import andriypyzh.services.TaskService;
+import andriypyzh.services.validators.TaskValidator;
 import org.apache.commons.text.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
@@ -31,26 +32,39 @@ public class EditTaskServlet extends HttpServlet {
 
         }
 
-        String taskName = request.getParameter("Name");
-        int priority = Integer.parseInt(request.getParameter("Priority"));
-        java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
-        String description = request.getParameter("Description");
+        try {
+            String taskName = request.getParameter("Name");
+            int priority = Integer.parseInt(request.getParameter("Priority"));
+            java.sql.Date deadline = java.sql.Date.valueOf(request.getParameter("Deadline"));
+            String description = request.getParameter("Description");
 
-        Task task = taskService.getByID(taskId);
+            TaskValidator.validateData(taskName,priority,deadline,description);
 
-        task.setName(taskName);
-        task.setPriority(priority);
-        task.setExpirationDate(deadline);
-        task.setDescription(description);
+            Task task = taskService.getByID(taskId);
 
-        taskService.updateTask(task);
+            task.setName(taskName);
+            task.setPriority(priority);
+            task.setExpirationDate(deadline);
+            task.setDescription(description);
 
-        if (section.startsWith("Tasks of ")) {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
-            requestDispatcher.forward(request, response);
-        } else {
+            taskService.updateTask(task);
+
             logger.info("/Projects?project=" + section);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Projects?project=" + section);
+            requestDispatcher.forward(request, response);
+
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "illegal priority");
+            logger.error(e);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/edittask.jsp");
+            requestDispatcher.forward(request, response);
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("error", e.getMessage());
+            logger.error(e.getMessage());
+            logger.error(e);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/edittask.jsp");
             requestDispatcher.forward(request, response);
         }
 
@@ -71,6 +85,7 @@ public class EditTaskServlet extends HttpServlet {
             int priority = task.getPriority();
             String deadline = task.getExpirationDate().toString();
             String description = task.getDescription();
+
 
             request.setAttribute("name", StringEscapeUtils.escapeHtml4(name));
             request.setAttribute("priority", priority);

@@ -38,9 +38,9 @@ public class RegisterServlet extends HttpServlet {
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/authentication/login.jsp");
             requestDispatcher.forward(request, response);
-//            response.sendRedirect("/todonow/authentication/login.jsp");
 
         } catch (IllegalArgumentException e) {
+
             request.setAttribute("error", e.getMessage());
             logger.error("Cannot Register", e);
 

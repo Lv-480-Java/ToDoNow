@@ -49,10 +49,11 @@ public class EditAssignments extends HttpServlet {
             return;
         }
 
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/editassignments.jsp");
-//        requestDispatcher.forward(request, response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forms/editassignments.jsp");
+        requestDispatcher.forward(request, response);
 
         doGet(request,response);
+
     }
 
     @Override

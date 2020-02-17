@@ -16,10 +16,12 @@
    href="/todonow/CategoryStatus?status=completed">
     Completed
 </a>
-<div align="center"><h5><br> Projects</h5></div>
 
 <%
     List<Project> projects = (List<Project>) session.getAttribute("projects");
+    if (projects.size()!=1){
+        out.print("<div align=\"center\"><h5><br> Projects</h5></div>");
+    }
     for (Project project : projects) {
         if (!project.getType().equals("default")) {
             out.print("<a class=\"list-group-item list-group-item-action d-flex align-items-center\" href =/todonow/Projects?project=" + project.getName().replace(" ", "+") + ">");

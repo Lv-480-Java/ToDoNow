@@ -5,9 +5,7 @@
     <title>ToDoNow</title>
 
     <link rel="preload" href="tabler-1568447964.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="tabler-1568447964.min.css">
-    </noscript>
+    <link rel="stylesheet" href="tabler-1568447964.min.css">
 </head>
 
 <body bgcolor="#FAFAFA">
@@ -21,7 +19,7 @@
                 <h1 class="section-title mb-2">ToDoNow</h1>
                 <h2 class="section-title mb-2">Tasks & Projects</h2>
                 <p class="section-description">
-                    Start your adventure with Tabler and make your dashboard great again.</p>
+                    Create tasks. Track your progress. Organize your workflow.</p>
                 <div class="mt-4">
                     <a href="authentication/register.jsp" class="btn btn-green" target="_blank">Sign up</a>
                     <a href="authentication/login.jsp" class="btn btn-secondary ml-2">Log in</a>
